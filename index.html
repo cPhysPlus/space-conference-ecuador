@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>eSPACE2027 — International Conference on Astrophysics &amp; Space Science</title>
+<title>eSPACE 2027 — International Conference on Astrophysics &amp; Space Science</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
@@ -339,7 +339,7 @@
   /* ── KEYNOTE ── */
   .keynote-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
     margin-top: 2rem;
   }
@@ -380,7 +380,7 @@
   /* ── TOPICS ── */
   .topics-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
     margin-top: 2rem;
   }
@@ -523,7 +523,7 @@
 
   /* ── SOC ── */
   .soc-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    display: grid; grid-template-columns: repeat(3, 1fr);
     gap: 1px; border: 1px solid var(--border); border-radius: 10px;
     overflow: hidden; margin-top: 2rem; background: var(--border);
   }
@@ -550,9 +550,9 @@
     border: 1px solid var(--border); border-radius: 10px; background: var(--surface);
     box-shadow: 0 2px 10px rgba(8,24,72,0.04);
   }
-  .sponsor-item { opacity: 0.65; filter: grayscale(0.2); transition: opacity 0.2s, filter 0.2s; }
-  .sponsor-item:hover { opacity: 1; filter: grayscale(0); }
-  .sponsor-item img { max-height: 46px; max-width: 170px; display: block; }
+  .sponsor-item { opacity: 1; filter: grayscale(0); transition: opacity 0.2s, filter 0.2s; }
+  .sponsor-item:hover { opacity: 0.8; filter: grayscale(0.15); }
+  .sponsor-item img { max-height: 80px; max-width: 260px; display: block; }
 
   /* ── HISTORY ── */
   .history-grid {
@@ -609,13 +609,72 @@
   /* ── REVEAL ── */
   .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.85s ease, transform 0.85s cubic-bezier(0.2,0.8,0.2,1); }
   .reveal.in { opacity: 1; transform: none; }
+
+  /* ── MOBILE RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .keynote-grid { grid-template-columns: repeat(2, 1fr); }
+    .topics-grid { grid-template-columns: repeat(2, 1fr); }
+    .soc-grid { grid-template-columns: repeat(2, 1fr); }
+    .history-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 640px) {
+    /* Nav */
+    .nav-links { display: none; }
+
+    /* Hero */
+    .hero { min-height: 70vh; padding: 5rem 5vw 3rem; }
+    .hero-eyebrow { font-size: 10px; }
+    .hero h1 { font-size: clamp(2rem, 8vw, 3rem); }
+    .hero-sub { font-size: 1rem; }
+    .hero-meta { flex-direction: column; gap: 0.4rem; padding: 1rem 1.2rem; }
+    .hero-ctas { flex-direction: column; gap: 0.75rem; }
+    .hero-ctas a { width: 100%; text-align: center; }
+
+    /* Stats */
+    .stats-band { grid-template-columns: repeat(2, 1fr); gap: 0.5rem; padding: 2rem 5vw; }
+
+    /* Sections */
+    section { padding: 3rem 5vw; }
+
+    /* Grids → 1 column */
+    .keynote-grid { grid-template-columns: 1fr; }
+    .topics-grid { grid-template-columns: 1fr; }
+    .soc-grid { grid-template-columns: 1fr; }
+    .contrib-grid { grid-template-columns: 1fr; }
+    .reg-grid { grid-template-columns: 1fr; }
+    .history-grid { grid-template-columns: 1fr; }
+
+    /* Venue facts wrap */
+    .venue-facts { flex-direction: column; }
+    .venue-fact { min-width: unset; }
+
+    /* Sponsors */
+    .sponsors-row { gap: 1.5rem; padding: 1.2rem; }
+    .sponsor-item img { max-height: 56px; max-width: 160px; }
+
+    /* Image frames */
+    .image-frame img { max-height: 220px; object-fit: cover; }
+
+    /* Programme highlights image */
+    .programme-img { max-height: 180px; }
+
+    /* Footer */
+    footer { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .footer-links { flex-direction: column; gap: 0.5rem; }
+  }
+
+  @media (max-width: 400px) {
+    .hero h1 { font-size: 1.8rem; }
+    .stats-band { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#"><span class="nav-live"></span>eSPACE2027</a>
+  <a class="nav-logo" href="#"><span class="nav-live"></span>eSPACE 2027</a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#speakers">Speakers</a></li>
@@ -635,7 +694,7 @@
 
   <div class="hero-title-big">eSPACE<br/>2027</div>
   <p class="hero-title-sub">International Conference on Astrophysics, Space Science and Converging Disciplines</p>
-  <p class="hero-series">Part of the <em>Symposium Series on Astrophysics and Theoretical &amp; Computational Physics</em> — organised by Yachay Tech University and CEDIA, with the support of the ONRG.</p>
+  <p class="hero-series">Organised by Yachay Tech University and CEDIA, with the support of the ONRG.</p>
 
   <div class="hero-meta">
     <div class="hero-meta-item">
@@ -684,9 +743,12 @@
         <img src="astrosciences/images/Residencias_Universidad_Yachay_Tech_1.jpg" alt="Yachay Tech Campus"/>
       </div>
       <p class="image-caption">Yachay Tech University campus — Urcuquí, Ecuador</p>
+      <div class="image-frame" style="margin-top:1rem;">
+        <img src="astrosciences/images/Residencias_Universidad_Yachay_Tech_2.jpg" alt="Yachay Tech Campus"/>
+      </div>
       <div class="stat-pair">
         <div class="stat-box">
-          <div class="stat-n">~110</div>
+          <div class="stat-n">~100</div>
           <div class="stat-l">expected participants</div>
         </div>
         <div class="stat-box">
@@ -842,7 +904,11 @@
       </div>
     </div>
 
-    <div class="card">
+    <div>
+      <div class="image-frame" style="margin-bottom:1.25rem;">
+        <img src="astrosciences/images/espace_conference.jpg" alt="eSPACE conference"/>
+      </div>
+      <div class="card">
       <h3 style="color:var(--accent);margin-bottom:1rem;">Programme highlights</h3>
       <ul class="highlights-list">
         <li><span>→</span>Research symposium with international invited speakers and contributed talks</li>
@@ -851,6 +917,7 @@
         <li><span>→</span>Peer-reviewed proceedings volume</li>
         <li><span>→</span>Networking across Ecuador and Latin America</li>
       </ul>
+    </div>
     </div>
   </div>
 </section>
@@ -873,11 +940,6 @@
       <span class="contrib-tag">Poster</span>
       <h3>Research poster</h3>
       <p>Present your results in an interactive poster session. Especially encouraged for graduate and advanced undergraduate students.</p>
-    </div>
-    <div class="contrib-card">
-      <span class="contrib-tag">Public talk</span>
-      <h3>Outreach lecture</h3>
-      <p>Proposals for public talks aimed at non-specialist audiences in the Urcuquí and Ibarra community are warmly welcomed.</p>
     </div>
     <div class="contrib-card">
       <span class="contrib-tag">Proceedings</span>
@@ -1077,13 +1139,6 @@
       <h3>III Symposium on Astrophysics and Theoretical &amp; Computational Physics</h3>
       <p>Third edition of the series, held at Yachay Tech University.</p>
       <a href="https://cphysplus.github.io/iii-simposio-fisica.html" target="_blank" class="history-link">Visit website →</a>
-    </div>
-    <div class="history-card current">
-      <div class="history-year">2027</div>
-      <div class="history-edition">4th Edition · eSPACE</div>
-      <h3>International Conference on Astrophysics, Space Science and Converging Disciplines</h3>
-      <p>The fourth edition expands the series' international reach under the eSPACE banner.</p>
-      <span style="display:inline-block;margin-top:0.75rem;font-family:var(--mono);font-size:11px;color:var(--teal);border:1px solid var(--teal-bdr);border-radius:100px;padding:0.15rem 0.6rem;">Current edition</span>
     </div>
   </div>
 </section>
