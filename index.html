@@ -610,6 +610,89 @@
   .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.85s ease, transform 0.85s cubic-bezier(0.2,0.8,0.2,1); }
   .reveal.in { opacity: 1; transform: none; }
 
+  /* ── SCHEDULE TABLE ── */
+  .sched-wrap {
+    overflow-x: auto; margin-top: 2rem;
+    border-radius: 12px; box-shadow: 0 4px 24px rgba(8,24,72,0.08);
+    border: 1px solid var(--border);
+  }
+  .sched-table {
+    width: 100%; border-collapse: collapse; font-size: 0.82rem;
+    font-family: var(--sans); background: var(--surface);
+  }
+  .sched-table thead tr {
+    background: var(--accent); color: #fff;
+  }
+  .sched-th-time {
+    padding: 0.9rem 1rem; text-align: left; font-family: var(--mono);
+    font-size: 11px; letter-spacing: 0.08em; white-space: nowrap;
+    min-width: 100px; border-right: 1px solid rgba(255,255,255,0.2);
+  }
+  .sched-th-day {
+    padding: 0.75rem 0.5rem; text-align: center; min-width: 110px;
+    border-right: 1px solid rgba(255,255,255,0.2);
+  }
+  .sched-th-day:last-child { border-right: none; }
+  .sched-date { display: block; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.02em; }
+  .sched-datenum { display: block; font-family: var(--mono); font-size: 10px; opacity: 0.75; margin-top: 2px; }
+  .sched-table td {
+    padding: 0.7rem 0.6rem; text-align: center; vertical-align: middle;
+    border: 1px solid #e2e8f0; line-height: 1.35;
+  }
+  .sched-time {
+    font-family: var(--mono); font-size: 11px; color: var(--dim);
+    white-space: nowrap; text-align: left; padding-left: 1rem;
+    background: #f8fafc; font-weight: 600; border-right: 2px solid var(--border);
+  }
+  .sched-empty { background: #f8fafc; }
+  /* Meals & breaks */
+  .sched-meal {
+    background: #fdf8e8; color: #7a5800; font-weight: 600;
+    font-size: 0.83rem; letter-spacing: 0.01em;
+  }
+  .sched-break {
+    background: #fdf8e8; color: #7a5800; font-weight: 600;
+    font-size: 0.8rem; font-style: italic;
+  }
+  .sched-arrival { background: #fdf8e8; color: #7a5800; font-weight: 700; }
+  .sched-depart { background: #fdf8e8; color: #7a5800; font-weight: 700; }
+  /* Sessions */
+  .sched-session {
+    font-weight: 500; color: var(--ink2); border-radius: 0;
+    transition: background 0.15s;
+  }
+  .sched-excursion {
+    background: linear-gradient(160deg, #e6f4f0 0%, #d2ece6 100%);
+    color: #0A5C42; font-weight: 700; font-size: 0.9rem;
+    letter-spacing: 0.03em;
+  }
+  .sched-close {
+    background: linear-gradient(160deg, #e8eef8 0%, #d8e4f4 100%);
+    color: var(--accent); font-weight: 600;
+  }
+  /* Topic colours */
+  .sched-sw  { background: #edf4ff; }
+  .sched-ap  { background: #f0f7ff; }
+  .sched-me  { background: #fff4ed; }
+  .sched-cp  { background: #f3edff; }
+  .sched-tp  { background: #edfaf4; }
+  .sched-cd  { background: #fef4e8; }
+  .sched-table tbody tr:hover td:not(.sched-empty):not(.sched-time) { filter: brightness(0.96); }
+  /* Legend */
+  .sched-legend {
+    display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.25rem;
+  }
+  .sleg {
+    font-size: 11px; font-family: var(--mono); padding: 0.25rem 0.7rem;
+    border-radius: 100px; border: 1px solid var(--border); font-weight: 500;
+  }
+  .sleg-sw  { background: #edf4ff; color: var(--accent); }
+  .sleg-ap  { background: #f0f7ff; color: var(--accent2); }
+  .sleg-me  { background: #fff4ed; color: #b84b00; }
+  .sleg-cp  { background: #f3edff; color: #5a35b0; }
+  .sleg-tp  { background: #edfaf4; color: var(--teal); }
+  .sleg-cd  { background: #fef4e8; color: var(--gold); }
+
   /* ── MOBILE RESPONSIVE ── */
   @media (max-width: 900px) {
     .keynote-grid { grid-template-columns: repeat(2, 1fr); }
@@ -680,6 +763,7 @@
     <li><a href="#speakers">Speakers</a></li>
     <li><a href="#topics">Topics</a></li>
     <li><a href="#contributions">Contributions</a></li>
+    <li><a href="#programme">Programme</a></li>
     <li><a href="#registration">Registration</a></li>
     <li><a href="#conduct">Conduct</a></li>
     <li><a href="#history">History</a></li>
@@ -729,13 +813,13 @@
     <div>
       <p class="section-label">About the conference</p>
       <h2>Why eSPACE matters</h2>
-      <p class="about-lede">A new generation of observatories, exascale computers, and AI-driven pipelines is reshaping how we understand the Universe — yet access to that frontier remains profoundly unequal.</p>
-      <p>eSPACE aims at closing that gap. By bringing world-leading researchers to Ecuador, we create a setting where cutting-edge science meets a regional community eager for mentorship, collaboration, and access. The conference is designed not just as a meeting, but as a catalyst: for new research partnerships, for early-career scientists, and for cross-disciplinary ideas.</p>
-      <p>A distinctive focus of eSPACE is the transfer of methods between space science, plasma astrophysics, and adjacent fields. Techniques developed to model plasma turbulence or process radio telescope data have direct applications in climate modelling, materials science, and naval research. eSPACE creates the conditions for those conversations to happen.</p>
-      <p>The conference builds on a strong foundation of growing momentum, an expanding network of regional institutions, and a commitment to making high-level science accessible.</p>
+      <p class="about-lede">A new generation of observatories, exascale computers, and AI-driven pipelines is reshaping how we understand the universe — yet access to that frontier remains profoundly unequal.</p>
+      <p>eSPACE was founded to close that gap. By bringing world-leading researchers to Ecuador's Yachay Tech University, we create a setting where cutting-edge science meets a regional community hungry for mentorship, collaboration, and access. The conference is deliberately designed not just as a meeting, but as a catalyst: for new research partnerships, for early-career scientists entering the field, and for cross-disciplinary ideas that do not fit neatly into any single conference track.</p>
+      <p>A distinctive focus of eSPACE is the transfer of methods between astrophysics and adjacent fields. Techniques developed to simulate stellar winds, model plasma turbulence, or process radio telescope data have direct applications in climate modelling, materials science, and naval research. eSPACE creates the conditions for those conversations to happen.</p>
+      <p>In its fourth edition, the conference builds on three years of growing momentum, an expanding network of regional institutions, and a commitment to making high-level science genuinely accessible.</p>
       <div class="onr-block">
         <div class="onr-label">ONRG Partnership</div>
-        <p>The support of the Office of Naval Research Global highlights the international relevance of this conference and its commitment to advancing fundamental and applied research across astrophysics, space science, computational modelling, and related disciplines.</p>
+        <p>The involvement of the Office of Naval Research Global reflects a deliberate commitment to bridging astrophysics and defence-relevant science — including hydrodynamic simulation, adaptive sensing, and materials in extreme environments.</p>
       </div>
     </div>
     <div>
@@ -744,13 +828,9 @@
       </div>
       <p class="image-caption">Yachay Tech University campus — Urcuquí, Ecuador</p>
       <div class="image-frame" style="margin-top:1rem;">
-        <img src="astrosciences/images/biblio_yt.jpg" alt="Yachay Tech Campus"/>
+        <img src="astrosciences/images/Residencias_Universidad_Yachay_Tech_2.jpg" alt="Yachay Tech Campus"/>
       </div>
-      <div class="stat-pair">
-        <div class="stat-box">
-          <div class="stat-n">~100</div>
-          <div class="stat-l">expected participants</div>
-        </div>
+      <div class="stat-pair" style="grid-template-columns:1fr;">
         <div class="stat-box">
           <div class="stat-n">5</div>
           <div class="stat-l">days of programme</div>
@@ -766,7 +846,7 @@
 <section id="speakers" class="reveal">
   <p class="section-label">Invited speakers</p>
   <h2>Keynote speakers</h2>
-  <p>We are pleased to announce our keynote speakers for eSPACE 2027. The full list will be published in <strong>July 2026</strong>.</p>
+  <p>We are pleased to announce our keynote speakers for eSPACE 2027. The full list will be published in <strong>September 2026</strong>.</p>
 
   <div class="keynote-grid">
     <div class="keynote-card">
@@ -814,7 +894,7 @@
 <section id="topics" class="reveal">
   <p class="section-label">Scientific programme</p>
   <h2>Conference topics</h2>
-  <p>eSPACE is interdisciplinary. We welcome contributions across all of the following areas and their intersections.</p>
+  <p>eSPACE is intentionally interdisciplinary. We welcome contributions across all of the following areas and their intersections.</p>
 
   <div class="topics-grid">
     <div class="topic-card">
@@ -860,31 +940,30 @@
   <div class="two-col">
     <div class="timeline">
       <div class="tl-item">
-        <div class="tl-date">July 2026</div>
+        <div class="tl-date">August 2026</div>
         <h3>Registration opens</h3>
         <p>Early-bird fee available from this date.</p>
       </div>
       <div class="tl-item">
-        <div class="tl-date">July 2026</div>
+        <div class="tl-date">September 2026</div>
         <h3>Call for contributions opens</h3>
         <p>Abstract submission portal goes live.</p>
       </div>
       <div class="tl-item">
-        <div class="tl-date">July 2026</div>
+        <div class="tl-date">September 2026</div>
         <h3>Confirmed speakers announced</h3>
         <p>Full keynote speaker list published.</p>
       </div>
-      <div class="tl-item">
-        <div class="tl-date">30 September 2026</div>
-        <h3>Abstract acceptance notifications</h3>
-        <p>Authors notified whether their contribution has been accepted.</p>
-      </div>
       <div class="tl-item highlight">
-        <div class="tl-date">15 October 2026</div>
+        <div class="tl-date">1 October 2026</div>
         <h3>Early-bird registration deadline</h3>
         <p>Save on the registration fee before this date.</p>
       </div>
-
+      <div class="tl-item">
+        <div class="tl-date">November 2026</div>
+        <h3>Abstract acceptance notifications</h3>
+        <p>Authors notified whether their contribution has been accepted.</p>
+      </div>
       <div class="tl-item highlight">
         <div class="tl-date">30 November 2026</div>
         <h3>Registration closes — no refunds after this date</h3>
@@ -896,7 +975,7 @@
         <p>Yachay Tech Campus, Urcuquí, Ecuador.</p>
       </div>
       <div class="tl-item">
-        <div class="tl-date">28 February 2027</div>
+        <div class="tl-date">February 2027</div>
         <h3>Proceedings submission deadline</h3>
       </div>
       <div class="tl-item">
@@ -907,17 +986,16 @@
 
     <div>
       <div class="image-frame" style="margin-bottom:1.25rem;">
-        <img src="astrosciences/images/senescyt_yt.jpg" alt="eSPACE conference"/>
+        <img src="astrosciences/images/espace_conference.jpg" alt="eSPACE conference"/>
       </div>
       <div class="card">
       <h3 style="color:var(--accent);margin-bottom:1rem;">Programme highlights</h3>
       <ul class="highlights-list">
-        <li><span>→</span>Keynote talks by international invited speakers</li>
-        <li><span>→</span>Contributed talks by national and international researchers</li>
+        <li><span>→</span>Research symposium with international invited speakers and contributed talks</li>
         <li><span>→</span>Poster sessions for graduate and undergraduate students</li>
-        <li><span>→</span>A Public Outreach talk open to the local community</li>
+        <li><span>→</span>Public talks — outreach events open to the local community</li>
         <li><span>→</span>Peer-reviewed proceedings volume</li>
-        <li><span>→</span>Networking across Ecuador and the region</li>
+        <li><span>→</span>Networking across Ecuador and Latin America</li>
       </ul>
     </div>
     </div>
@@ -929,7 +1007,7 @@
 <!-- CONTRIBUTIONS -->
 <section id="contributions" class="reveal">
   <p class="section-label">Call for contributions</p>
-  <h2>Abstract Submission</h2>
+  <h2>Submit your work</h2>
   <p>We invite submissions for talks and posters from researchers and students at all career stages. Contributions are evaluated on scientific merit. <strong>Registration and payment are only required once your contribution has been accepted</strong> — we want to make sure your work has a place in the programme before you commit.</p>
 
   <div class="contrib-types">
@@ -951,11 +1029,128 @@
   </div>
 
   <div class="contrib-note">
-    Acceptance notifications will be sent in October 2026. Abstract submission details will be announced when the call opens in August 2026. Registration fees cover coffee breaks, lunches, and venue use — they do not include travel or accommodation.
+    Acceptance notifications will be sent in November 2026. Abstract submission details will be announced when the call opens in September 2026. Registration fees cover coffee breaks, lunches, and venue use — they do not include travel or accommodation.
   </div>
 
   <div class="mt2" style="text-align:center;">
-    <a class="btn btn-outline btn-disabled">Abstract submission — opens August 2026</a>
+    <a class="btn btn-outline btn-disabled">Abstract submission — opens September 2026</a>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- PRELIMINARY PROGRAMME -->
+<section id="programme" class="reveal">
+  <p class="section-label">Schedule</p>
+  <h2>Preliminary programme</h2>
+  <p>The conference runs Monday 4 – Friday 8 January 2027, with arrival on Sunday 3 January and departure on Saturday 9 January. The schedule below is indicative and subject to adjustment.</p>
+
+  <div class="sched-wrap">
+    <table class="sched-table">
+      <thead>
+        <tr>
+          <th class="sched-th-time">Hour</th>
+          <th class="sched-th-day"><span class="sched-date">Sunday</span><span class="sched-datenum">3 Jan</span></th>
+          <th class="sched-th-day"><span class="sched-date">Monday</span><span class="sched-datenum">4 Jan</span></th>
+          <th class="sched-th-day"><span class="sched-date">Tuesday</span><span class="sched-datenum">5 Jan</span></th>
+          <th class="sched-th-day"><span class="sched-date">Wednesday</span><span class="sched-datenum">6 Jan</span></th>
+          <th class="sched-th-day"><span class="sched-date">Thursday</span><span class="sched-datenum">7 Jan</span></th>
+          <th class="sched-th-day"><span class="sched-date">Friday</span><span class="sched-datenum">8 Jan</span></th>
+          <th class="sched-th-day"><span class="sched-date">Saturday</span><span class="sched-datenum">9 Jan</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 07h00–08h30 -->
+        <tr>
+          <td class="sched-time">07h00–08h30</td>
+          <td class="sched-empty"></td>
+          <td class="sched-meal" colspan="5">Breakfast</td>
+          <td class="sched-meal sched-depart">Breakfast &amp; Departure</td>
+        </tr>
+        <!-- 08h30–10h00 -->
+        <tr>
+          <td class="sched-time">08h30–10h00</td>
+          <td class="sched-empty"></td>
+          <td class="sched-session sched-sw">Space weather &amp; climate</td>
+          <td class="sched-session sched-ap">Astrophysics &amp; plasma modelling</td>
+          <td class="sched-session sched-ap">Astrophysics &amp; plasma modelling</td>
+          <td class="sched-session sched-ap">Astrophysics &amp; plasma modelling</td>
+          <td class="sched-session sched-cd">Converging &amp; interdisciplinary fields</td>
+          <td class="sched-empty"></td>
+        </tr>
+        <!-- 10h00–10h30 -->
+        <tr>
+          <td class="sched-time">10h00–10h30</td>
+          <td class="sched-empty"></td>
+          <td class="sched-break" colspan="5">Coffee Break</td>
+          <td class="sched-empty"></td>
+        </tr>
+        <!-- 10h30–12h30 -->
+        <tr>
+          <td class="sched-time">10h30–12h30</td>
+          <td class="sched-empty"></td>
+          <td class="sched-session sched-sw">Space weather &amp; climate</td>
+          <td class="sched-session sched-ap">Astrophysics &amp; plasma modelling</td>
+          <td class="sched-session sched-ap">Astrophysics &amp; plasma modelling</td>
+          <td class="sched-session sched-ap">Astrophysics &amp; plasma modelling</td>
+          <td class="sched-session sched-tp">Theoretical physics &amp; cosmology</td>
+          <td class="sched-empty"></td>
+        </tr>
+        <!-- 12h30–14h00 -->
+        <tr>
+          <td class="sched-time">12h30–14h00</td>
+          <td class="sched-empty"></td>
+          <td class="sched-meal" colspan="5">Lunch</td>
+          <td class="sched-empty"></td>
+        </tr>
+        <!-- 14h00–15h30 -->
+        <tr>
+          <td class="sched-time">14h00–15h30</td>
+          <td class="sched-empty"></td>
+          <td class="sched-session sched-me">Materials in extreme environments</td>
+          <td class="sched-session sched-ap">Astrophysics &amp; plasma modelling</td>
+          <td class="sched-excursion" rowspan="3">Excursion</td>
+          <td class="sched-session sched-cp">Computational physics &amp; AI</td>
+          <td class="sched-session sched-tp">Theoretical physics &amp; cosmology</td>
+          <td class="sched-empty"></td>
+        </tr>
+        <!-- 15h30–16h00 -->
+        <tr>
+          <td class="sched-time">15h30–16h00</td>
+          <td class="sched-empty"></td>
+          <td class="sched-break" colspan="2">Coffee Break</td>
+          <td class="sched-break" colspan="2">Coffee Break</td>
+          <td class="sched-empty"></td>
+        </tr>
+        <!-- 16h00–17h30 -->
+        <tr>
+          <td class="sched-time">16h00–17h30</td>
+          <td class="sched-empty"></td>
+          <td class="sched-session sched-me">Materials in extreme environments</td>
+          <td class="sched-session sched-ap">Astrophysics &amp; plasma modelling</td>
+          <td class="sched-session sched-cp">Computational physics &amp; AI</td>
+          <td class="sched-session sched-close">Wrap-up discussion &amp; Closing Ceremony</td>
+          <td class="sched-empty"></td>
+        </tr>
+        <!-- 17h00–20h00 -->
+        <tr>
+          <td class="sched-time">17h00–20h00</td>
+          <td class="sched-meal sched-arrival">Arrival &amp; Dinner</td>
+          <td class="sched-meal" colspan="5">Dinner</td>
+          <td class="sched-empty"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Legend -->
+  <div class="sched-legend">
+    <span class="sleg sleg-sw">Space weather &amp; climate</span>
+    <span class="sleg sleg-ap">Astrophysics &amp; plasma modelling</span>
+    <span class="sleg sleg-me">Materials in extreme environments</span>
+    <span class="sleg sleg-cp">Computational physics &amp; AI</span>
+    <span class="sleg sleg-tp">Theoretical physics &amp; cosmology</span>
+    <span class="sleg sleg-cd">Converging &amp; interdisciplinary fields</span>
   </div>
 </section>
 
@@ -965,7 +1160,7 @@
 <section id="registration" class="reveal">
   <p class="section-label">Registration</p>
   <h2>Registration &amp; fees</h2>
-  <p>Fees cover five days of coffee breaks, lunches, and use of the conference venue. Travel, accommodation, and dinners are arranged independently. <strong>Registration opens July 2026.</strong> Early-bird pricing is available until <strong>1 September 2026</strong>.</p>
+  <p>Fees cover five days of coffee breaks, lunches, and use of the conference venue. Travel, accommodation, and dinners are arranged independently. <strong>Registration opens August 2026.</strong> Early-bird pricing is available until <strong>1 October 2026</strong>.</p>
 
   <div class="reg-grid">
     <div class="reg-card">
@@ -975,7 +1170,7 @@
         <span class="price-early">$200</span>
         <span class="price-regular">$240</span>
       </div>
-      <div class="price-label">Early-bird (by 1 Sep) / Regular (by 30 Nov) · USD</div>
+      <div class="price-label">Early-bird (by 1 Oct) / Regular (by 30 Nov) · USD</div>
       <ul class="reg-includes">
         <li>Morning &amp; afternoon coffee breaks (5 days)</li>
         <li>Lunches at the venue (5 days)</li>
@@ -996,8 +1191,8 @@
         <span class="price-early">$60</span>
         <span class="price-regular">$80</span>
       </div>
-      <div class="price-label">Early-bird (by 1 Sep) / Regular (by 30 Nov) · USD</div>
-      <div class="subsidy-box">Subsidised rate — partial support provided by ONRG and Yachay Tech.</div>
+      <div class="price-label">Early-bird (by 1 Oct) / Regular (by 30 Nov) · USD</div>
+      <div class="subsidy-box">Subsidised rate — partial support provided by ONRG and Yachay Tech to lower barriers for early-career researchers from Ecuador and the region.</div>
       <ul class="reg-includes">
         <li>Morning &amp; afternoon coffee breaks (5 days)</li>
         <li>Lunches at the venue (5 days)</li>
