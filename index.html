@@ -463,6 +463,48 @@
   }
   .contrib-note::before { content: 'ℹ'; flex-shrink: 0; }
 
+  /* ── IOP PROCEEDINGS BLOCK ── */
+  .iop-block {
+    margin-top: 2rem;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--surface);
+    box-shadow: 0 2px 12px rgba(8,24,72,0.06);
+  }
+  .iop-block-inner {
+    display: flex; gap: 0; align-items: stretch;
+  }
+  .iop-logo-col {
+    background: linear-gradient(160deg, #0550A0 0%, #1268B8 100%);
+    padding: 2rem 1.5rem;
+    display: flex; align-items: center; justify-content: center;
+    min-width: 130px; flex-shrink: 0;
+  }
+  .iop-badge {
+    font-family: var(--mono); font-size: 10px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; color: #fff;
+    writing-mode: vertical-rl; text-orientation: mixed;
+    transform: rotate(180deg); line-height: 1.4;
+  }
+  .iop-text-col {
+    padding: 1.75rem 2rem; flex: 1;
+  }
+  .iop-text-col h3 {
+    font-size: 1.05rem; color: var(--ink); margin-bottom: 0.75rem; font-weight: 600;
+  }
+  .iop-text-col h3 a {
+    color: var(--accent2); text-decoration: none; border-bottom: 1px solid var(--border-em);
+    transition: color 0.15s;
+  }
+  .iop-text-col h3 a:hover { color: var(--accent); }
+  .iop-text-col p { font-size: 0.875rem; color: var(--ink2); line-height: 1.6; }
+  @media (max-width: 640px) {
+    .iop-block-inner { flex-direction: column; }
+    .iop-logo-col { writing-mode: horizontal-tb; transform: none; min-width: unset; padding: 1rem 1.5rem; }
+    .iop-badge { writing-mode: horizontal-tb; transform: none; }
+  }
+
   /* ── REGISTRATION ── */
   .reg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
   @media (max-width: 600px) { .reg-grid { grid-template-columns: 1fr; } }
@@ -986,7 +1028,7 @@
 
     <div>
       <div class="image-frame" style="margin-bottom:1.25rem;">
-        <img src="astrosciences/images/header.jpg" alt="eSPACE conference"/>
+        <img src="astrosciences/images/senescyt_yt.jpg" alt="eSPACE conference"/>
       </div>
       <div class="card">
       <h3 style="color:var(--accent);margin-bottom:1rem;">Programme highlights</h3>
@@ -1024,7 +1066,7 @@
     <div class="contrib-card">
       <span class="contrib-tag">Proceedings</span>
       <h3>Conference paper</h3>
-      <p>Accepted contributors are invited to submit a peer-reviewed paper, due February 2027.</p>
+      <p>Accepted contributors are invited to submit a peer-reviewed paper for publication in the <strong>Journal of Physics: Conference Series (JPCS)</strong> by IOP Publishing — open access under CC BY 4.0. Papers are due February 2027.</p>
     </div>
   </div>
 
@@ -1032,8 +1074,23 @@
     Acceptance notifications will be sent in November 2026. Abstract submission details will be announced when the call opens in September 2026. Registration fees cover coffee breaks, lunches, and venue use — they do not include travel or accommodation.
   </div>
 
-  <div class="mt2" style="text-align:center;">
+  <!-- IOP PROCEEDINGS BLOCK -->
+  <div class="iop-block">
+    <div class="iop-block-inner">
+      <div class="iop-logo-col">
+        <span class="iop-badge">IOP Conference Series</span>
+      </div>
+      <div class="iop-text-col">
+        <h3>Proceedings published in <a href="https://iopscience.iop.org/journal/1742-6596" target="_blank" rel="noopener">Journal of Physics: Conference Series</a></h3>
+        <p>eSPACE 2027 proceedings will be published by <strong>IOP Publishing</strong> in the <em>Journal of Physics: Conference Series (JPCS)</em>. All articles are open access and free to read in perpetuity under a <strong>Creative Commons CC BY 4.0</strong> licence. Authors retain copyright. Papers undergo peer review managed by the conference organisers and are submitted via the proceedings management platform.</p>
+        <p style="margin-top:0.6rem; font-size:0.83rem; color:var(--dim);">Publication cost is USD 120 per article, covered by the conference. Authors do not need to sign copyright forms — submission implies agreement to the IOP Proceedings Licence. Formatting guidelines are available on the IOP Conference Series website.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt2" style="text-align:center; display:flex; flex-wrap:wrap; gap:1rem; justify-content:center;">
     <a class="btn btn-outline btn-disabled">Abstract submission — opens September 2026</a>
+    <a href="https://www.morressier.com" target="_blank" rel="noopener" class="btn btn-outline btn-disabled">Morressier platform — available mid-August 2026</a>
   </div>
 </section>
 
