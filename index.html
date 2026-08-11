@@ -666,6 +666,29 @@
   .mt2 { margin-top: 2rem; }
   .mt3 { margin-top: 3rem; }
 
+  /* ── ECUADOR ── */
+  .ecuador-layout {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 3rem; margin-top: 2rem; align-items: start;
+  }
+  .ecuador-text p { font-size: 0.95rem; color: var(--ink2); line-height: 1.7; }
+  .ecuador-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 0.5rem;
+  }
+  .ecuador-photo { border-radius: 8px; overflow: hidden; }
+  .ecuador-photo.tall { grid-row: span 2; }
+  .ecuador-photo img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform 0.4s ease;
+  }
+  .ecuador-photo:hover img { transform: scale(1.04); }
+  @media (max-width: 800px) {
+    .ecuador-layout { grid-template-columns: 1fr; }
+  }
+
   /* ── REVEAL ── */
   .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.85s ease, transform 0.85s cubic-bezier(0.2,0.8,0.2,1); }
   .reveal.in { opacity: 1; transform: none; }
@@ -828,6 +851,7 @@
     <li><a href="#registration">Registration</a></li>
     <li><a href="#conduct">Conduct</a></li>
     <li><a href="#history">History</a></li>
+    <li><a href="#ecuador">Ecuador</a></li>
   </ul>
 </nav>
 
@@ -839,7 +863,7 @@
 
   <div class="hero-title-big">eSPACE<br/>2027</div>
   <p class="hero-title-sub">International Conference on Astrophysics, Space Science and Converging Disciplines</p>
-  <p class="hero-series">Organised by Yachay Tech University and CEDIA, with the support of the <a href="https://www.onr.navy.mil/organization/onr-global" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">ONRG</a>.</p>
+  <p class="hero-series">Organised by <a href="https://yachaytech.edu.ec" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">Yachay Tech University</a> and <a href="https://cedia.edu.ec" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">CEDIA</a>, with the support of the <a href="https://www.onr.navy.mil/organization/onr-global" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">ONRG</a>.</p>
 
   <div class="hero-meta">
     <div class="hero-meta-item">
@@ -875,7 +899,7 @@
       <p class="section-label">About the conference</p>
       <h2>Why eSPACE matters</h2>
       <p class="about-lede">A new generation of observatories, exascale computers, and AI-driven pipelines is reshaping how we understand the universe — yet access to that frontier remains profoundly unequal.</p>
-      <p>eSPACE was founded to close that gap. By bringing world-leading researchers to Ecuador's Yachay Tech University, we create a setting where cutting-edge science meets a regional community hungry for mentorship, collaboration, and access. The conference is deliberately designed not just as a meeting, but as a catalyst: for new research partnerships, for early-career scientists entering the field, and for cross-disciplinary ideas that do not fit neatly into any single conference track.</p>
+      <p>eSPACE was founded to close that gap. By bringing world-leading researchers to Ecuador's <a href="https://yachaytech.edu.ec" target="_blank" rel="noopener" style="color:var(--accent2);text-decoration:none;border-bottom:1px solid var(--border-em);">Yachay Tech University</a>, we create a setting where cutting-edge science meets a regional community hungry for mentorship, collaboration, and access. The conference is deliberately designed not just as a meeting, but as a catalyst: for new research partnerships, for early-career scientists entering the field, and for cross-disciplinary ideas that do not fit neatly into any single conference track.</p>
       <p>A distinctive focus of eSPACE is the transfer of methods between astrophysics and adjacent fields. Techniques developed to simulate stellar winds, model plasma turbulence, or process radio telescope data have direct applications in climate modelling, materials science, and naval research. eSPACE creates the conditions for those conversations to happen.</p>
       <p>In its fourth edition, the conference builds on three years of growing momentum, an expanding network of regional institutions, and a commitment to making high-level science genuinely accessible.</p>
       <div class="onr-block">
@@ -1295,47 +1319,47 @@
   <div class="soc-grid">
     <div class="soc-member">
       <div class="soc-avatar"><img src="astrosciences/people/wbandabarragan.jpeg" alt="Wladimir Banda-Barragán"/></div>
-      <div class="name">Wladimir Banda-Barragán</div><div class="affil">Yachay Tech University</div>
+      <div class="name">Wladimir Banda-Barragán</div><div class="affil"><a href="https://yachaytech.edu.ec" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--border-em);">Yachay Tech University</a></div>
       <a class="soc-link" href="https://scholar.google.com/citations?user=4HarUuQAAAAJ&hl=en" target="_blank" rel="noopener">See profile →</a>
     </div>
     <div class="soc-member">
       <div class="soc-avatar"><img src="astrosciences/people/jchacon.png" alt="Julio Chacón"/></div>
-      <div class="name">Julio Chacón</div><div class="affil">Yachay Tech University</div>
+      <div class="name">Julio Chacón</div><div class="affil"><a href="https://yachaytech.edu.ec" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--border-em);">Yachay Tech University</a></div>
       <a class="soc-link" href="https://scholar.google.com/citations?user=bri3h5IAAAAJ&hl=en" target="_blank" rel="noopener">See profile →</a>
     </div>
     <div class="soc-member">
       <div class="soc-avatar"><img src="astrosciences/people/hdenes.png" alt="Helga Dénes"/></div>
-      <div class="name">Helga Dénes</div><div class="affil">USFQ</div>
+      <div class="name">Helga Dénes</div><div class="affil"><a href="https://www.usfq.edu.ec" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--border-em);">USFQ</a></div>
       <a class="soc-link" href="https://scholar.google.com/citations?user=YN2ma8kAAAAJ&hl=en" target="_blank" rel="noopener">See profile →</a>
     </div>
     <div class="soc-member">
       <div class="soc-avatar"><img src="astrosciences/people/olassoandino.jpeg" alt="Óscar Lasso"/></div>
-      <div class="name">Óscar Lasso</div><div class="affil">UDLA</div>
+      <div class="name">Óscar Lasso</div><div class="affil"><a href="https://www.udla.edu.ec" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--border-em);">UDLA</a></div>
       <a class="soc-link" href="https://scholar.google.com/citations?user=jIbDcrkAAAAJ&hl=es" target="_blank" rel="noopener">See profile →</a>
     </div>
     <div class="soc-member">
       <div class="soc-avatar"><img src="astrosciences/people/crojas.jpg" alt="Clara Rojas"/></div>
-      <div class="name">Clara Rojas</div><div class="affil">Yachay Tech University</div>
+      <div class="name">Clara Rojas</div><div class="affil"><a href="https://yachaytech.edu.ec" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--border-em);">Yachay Tech University</a></div>
       <a class="soc-link" href="https://scholar.google.com/citations?user=BJy4JBUAAAAJ&hl=en" target="_blank" rel="noopener">See profile →</a>
     </div>
     <div class="soc-member">
       <div class="soc-avatar"><img src="astrosciences/people/dandrade.jpg" alt="David Andrade"/></div>
-      <div class="name">David Andrade</div><div class="affil">Yachay Tech University</div>
+      <div class="name">David Andrade</div><div class="affil"><a href="https://yachaytech.edu.ec" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--border-em);">Yachay Tech University</a></div>
       <a class="soc-link" href="https://yachaytech.edu.ec/perfil/david-andrade/" target="_blank" rel="noopener">See profile →</a>
     </div>
     <div class="soc-member">
       <div class="soc-avatar"><img src="astrosciences/people/ochimborazo.jpg" alt="Óscar Chimborazo"/></div>
-      <div class="name">Óscar Chimborazo</div><div class="affil">Howard University</div>
+      <div class="name">Óscar Chimborazo</div><div class="affil"><a href="https://howard.edu" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--border-em);">Howard University</a></div>
       <a class="soc-link" href="https://scholar.google.com/citations?user=a0idLmIAAAAJ&hl=en" target="_blank" rel="noopener">See profile →</a>
     </div>
     <div class="soc-member">
       <div class="soc-avatar"><img src="astrosciences/people/nvasquez.jpeg" alt="Nicolás Vásquez"/></div>
-      <div class="name">Nicolás Vásquez</div><div class="affil">Escuela Politécnica Nacional</div>
+      <div class="name">Nicolás Vásquez</div><div class="affil"><a href="https://www.epn.edu.ec" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--border-em);">Escuela Politécnica Nacional</a></div>
       <a class="soc-link" href="https://scholar.google.com/citations?user=HS-RwzQAAAAJ&hl=es" target="_blank" rel="noopener">See profile →</a>
     </div>
     <div class="soc-member">
       <div class="soc-avatar"><img src="astrosciences/people/ljacome.jpg" alt="Lenin Jácome"/></div>
-      <div class="name">Lenin Jácome</div><div class="affil">Yachay Tech University</div>
+      <div class="name">Lenin Jácome</div><div class="affil"><a href="https://yachaytech.edu.ec" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px solid var(--border-em);">Yachay Tech University</a></div>
       <a class="soc-link" href="https://scholar.google.com/citations?user=6qOADvEAAAAJ&hl=es" target="_blank" rel="noopener">See profile →</a>
     </div>
   </div>
@@ -1409,8 +1433,8 @@
     <p class="section-label">Support</p>
     <h2>Organised by</h2>
     <div class="sponsors-row">
-      <div class="sponsor-item"><img src="astrosciences/images/LOGOTIPO-YACHAY-TECH-UITEY-2023.png" alt="Yachay Tech University" style="max-height:120px;max-width:389px;"/></div>
-      <div class="sponsor-item"><img src="astrosciences/images/cedia.png" alt="CEDIA"/></div>
+      <div class="sponsor-item"><a href="https://yachaytech.edu.ec" target="_blank" rel="noopener"><img src="astrosciences/images/LOGOTIPO-YACHAY-TECH-UITEY-2023.png" alt="Yachay Tech University" style="max-height:120px;max-width:389px;"/></a></div>
+      <div class="sponsor-item"><a href="https://cedia.edu.ec" target="_blank" rel="noopener"><img src="astrosciences/images/cedia.png" alt="CEDIA"/></a></div>
     </div>
     <p class="section-label mt2" style="margin-bottom:1rem;">With the kind support of</p>
     <div class="sponsors-row" style="padding:1.5rem;">
@@ -1449,6 +1473,31 @@
     </div>
   </div>
 </section>
+
+<!-- ECUADOR -->
+<section id="ecuador" class="reveal">
+  <p class="section-label">Destination</p>
+  <h2>Ecuador &amp; Imbabura</h2>
+  <div class="ecuador-layout">
+    <div class="ecuador-text">
+      <p>Ecuador is one of the most ecologically and culturally diverse countries on earth — four worlds in one: the Pacific coast, the Andean highlands, the Amazon basin, and the Galápagos archipelago. Despite its small size, it holds more bird species than the entire North American continent and was the first country declared a UNESCO Cultural Heritage Site through its capital, Quito.</p>
+      <p style="margin-top:1rem;"><strong>Imbabura</strong>, known as the <em>Province of Lakes</em>, sits in the northern highlands at around 2,200–2,500 m above sea level. It is home to crater lakes, ancient indigenous markets, and the imposing Imbabura volcano — a dominant presence from the Yachay Tech campus. The surrounding area offers some of the most scenic landscapes in South America, with the colonial city of Ibarra and the artisan town of Otavalo within easy reach.</p>
+      <p style="margin-top:1rem;">The conference venue, <strong>Urcuquí</strong>, enjoys a mild Andean climate year-round. January is dry season — clear skies, warm days, and cool evenings. Participants are encouraged to arrive early or stay on after the conference to explore the region.</p>
+      <a href="https://ecuador.travel" target="_blank" rel="noopener" class="btn btn-outline" style="margin-top:1.5rem;display:inline-block;font-size:13px;">Explore Ecuador →</a>
+    </div>
+    <div class="ecuador-photos">
+      <div class="ecuador-grid">
+        <div class="ecuador-photo tall"><img src="astrosciences/images/1.jpeg" alt="Imbabura landscape"/></div>
+        <div class="ecuador-photo"><img src="astrosciences/images/2.jpeg" alt="Ecuador scenery"/></div>
+        <div class="ecuador-photo"><img src="astrosciences/images/3.jpeg" alt="Ecuador scenery"/></div>
+        <div class="ecuador-photo"><img src="astrosciences/images/4.jpeg" alt="Ecuador scenery"/></div>
+        <div class="ecuador-photo"><img src="astrosciences/images/5.jpeg" alt="Ecuador scenery"/></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
 
 <!-- FOOTER -->
 <footer>
