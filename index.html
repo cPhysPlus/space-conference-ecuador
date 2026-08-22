@@ -76,16 +76,16 @@
     animation: navpulse 2.6s ease-in-out infinite;
   }
   @keyframes navpulse { 0%,100%{opacity:.35;transform:scale(.8)} 50%{opacity:1;transform:scale(1.15)} }
-  .nav-links { display: flex; gap: 1.75rem; list-style: none; }
+  .nav-links { display: flex; gap: 1.25rem; list-style: none; }
   .nav-links a {
     color: var(--dim);
     text-decoration: none;
-    font-size: 13.5px;
+    font-size: 12px;
     letter-spacing: 0.02em;
     transition: color 0.2s;
   }
   .nav-links a:hover { color: var(--ink); }
-  @media (max-width: 740px) { .nav-links { display: none; } }
+  @media (max-width: 940px) { .nav-links { display: none; } }
 
   /* ── HERO ── */
   .hero {
@@ -381,25 +381,58 @@
   .topics-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+    gap: 1.25rem;
     margin-top: 2rem;
   }
   .topic-card {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1.25rem 1.5rem;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;
     transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
     box-shadow: 0 1px 6px rgba(8,24,72,0.04);
   }
   .topic-card:hover {
     border-color: var(--gold-bdr);
-    box-shadow: 0 4px 18px rgba(184,120,0,0.10);
-    transform: translateY(-2px);
+    box-shadow: 0 6px 22px rgba(184,120,0,0.12);
+    transform: translateY(-3px);
   }
-  .topic-icon { font-size: 1.4rem; margin-bottom: 0.6rem; display: block; }
-  .topic-card h3 { font-size: 0.9rem; color: var(--ink2); }
-  .topic-card p { font-size: 0.82rem; margin-top: 0.25rem; color: var(--dim); }
+  /* Image header — NASA public-domain imagery (see topic-img-1..6 below) */
+  .topic-img {
+    flex: 1 1 50%;
+    min-height: 0;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+  }
+  .topic-img::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(5,13,28,0.42), transparent 55%);
+  }
+  /* Image header — cards 3 & 6 NASA public-domain (images.nasa.gov: webb_first_deep_field,
+     PIA26150); cards 1, 2, 4, 5 use maintainer-provided images (topics/*.jpg). */
+  .topic-img-1 { background-image: url('astrosciences/images/topics/topics-astrophysics.jpg'); }
+  .topic-img-2 { background-image: url('astrosciences/images/topics/topic-space-weather.jpg'); }
+  .topic-img-3 { background-image: url('astrosciences/images/topics/topic-cosmology.jpg'); }
+  .topic-img-4 { background-image: url('astrosciences/images/topics/topic-propulsion.jpg'); }
+  .topic-img-5 { background-image: url('astrosciences/images/topics/topic-computing.jpg'); }
+  .topic-img-6 { background-image: url('astrosciences/images/topics/topic-antennas.jpg'); }
+  .topic-body {
+    flex: 1 1 50%;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.1rem 1.25rem;
+  }
+  .topic-body h3 { font-size: 0.95rem; color: var(--ink2); }
+  .topic-body p { font-size: 0.84rem; margin-top: 0.35rem; color: var(--dim); }
 
   /* ── TIMELINE ── */
   .timeline { position: relative; padding-left: 2rem; margin-top: 2rem; }
@@ -600,6 +633,60 @@
   }
   .venue-fact .vf-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; color: var(--dim); text-transform: uppercase; margin-bottom: 0.25rem; }
   .venue-fact .vf-val { font-size: 0.95rem; font-weight: 500; color: var(--ink); }
+
+  /* ── PRACTICAL INFO ── */
+  .info-wrap {
+    overflow-x: auto; margin-top: 1.5rem;
+    border: 1px solid var(--border); border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(8,24,72,0.08);
+    background: var(--surface);
+  }
+  .info-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  .info-table thead tr { background: var(--accent); color: #fff; }
+  .info-table th {
+    padding: 0.8rem 1rem; text-align: left;
+    font-family: var(--mono); font-size: 10.5px; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap;
+  }
+  .info-table td {
+    padding: 0.75rem 1rem; border: 1px solid #e2e8f0;
+    vertical-align: top; color: var(--muted); line-height: 1.5;
+  }
+  .info-table tbody tr:nth-child(even) td { background: #f8fafc; }
+  .info-table .opt-name { font-weight: 600; color: var(--ink2); white-space: nowrap; }
+  .info-table .opt-tag {
+    display: block; font-family: var(--mono); font-size: 9px;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin-top: 2px;
+  }
+  .info-table .it-price { font-family: var(--mono); color: var(--accent2); font-weight: 700; white-space: nowrap; }
+  .practical-notes { list-style: none; margin-top: 1.25rem; display: grid; gap: 0.5rem; }
+  .practical-notes li {
+    font-size: 0.85rem; color: var(--muted);
+    display: flex; align-items: start; gap: 0.6rem; line-height: 1.55;
+  }
+  .practical-notes li::before { content: '→'; color: var(--teal); font-weight: 700; flex-shrink: 0; }
+  .climate-col p { font-size: 0.92rem; color: var(--ink2); line-height: 1.7; }
+  .pack-box {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 1.5rem 1.75rem; box-shadow: 0 2px 10px rgba(8,24,72,0.05);
+  }
+  .pack-box h3 { color: var(--accent); font-size: 0.92rem; margin-bottom: 0.9rem; }
+  .pack-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem 1.5rem; }
+  @media (max-width: 640px) { .pack-list { grid-template-columns: 1fr; } }
+  .pack-list li {
+    font-size: 0.84rem; color: var(--muted);
+    display: flex; align-items: center; gap: 0.55rem;
+  }
+  .pack-list li::before { content: '✓'; color: var(--teal); font-weight: 700; font-size: 12px; flex-shrink: 0; }
+  .health-box {
+    background: var(--teal-bg); border: 1px solid var(--teal-bdr);
+    border-left: 3px solid var(--teal); border-radius: 8px;
+    padding: 1.4rem 1.75rem; margin-top: 1.5rem;
+  }
+  .health-box h3 { color: var(--teal); font-size: 0.9rem; margin-bottom: 0.6rem; }
+  .health-box p { font-size: 0.875rem; color: #0A5C42; }
+  .health-box p + p { margin-top: 0.6rem; }
+  .practical-links { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.75rem; }
 
   /* ── SPONSORS ── */
   .sponsors-band { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 72px 5vw; }
@@ -853,6 +940,7 @@
     <li><a href="#contributions">Contributions</a></li>
     <li><a href="#programme">Programme</a></li>
     <li><a href="#registration">Registration</a></li>
+    <li><a href="#practical">Practical info</a></li>
     <li><a href="#conduct">Conduct</a></li>
     <li><a href="#history">History</a></li>
     <li><a href="#ecuador">Ecuador</a></li>
@@ -987,34 +1075,46 @@
 
   <div class="topics-grid">
     <div class="topic-card">
-      <span class="topic-icon">🌊</span>
-      <h3>Astrophysics &amp; plasma modelling</h3>
-      <p>Turbulence, shock physics, magnetic fields, astrophysical gas dynamics</p>
+      <div class="topic-img topic-img-1"></div>
+      <div class="topic-body">
+        <h3>Astrophysics &amp; plasma modelling</h3>
+        <p>Turbulence, shock physics, magnetic fields, astrophysical gas dynamics</p>
+      </div>
     </div>
     <div class="topic-card">
-      <span class="topic-icon">☀️</span>
-      <h3>Space weather &amp; climate</h3>
-      <p>Solar activity, geomagnetic storms, heliosphere, ionospheric physics and turbulence</p>
+      <div class="topic-img topic-img-2"></div>
+      <div class="topic-body">
+        <h3>Space weather &amp; climate</h3>
+        <p>Solar activity, geomagnetic storms, heliosphere, ionospheric physics and turbulence</p>
+      </div>
     </div>
     <div class="topic-card">
-      <span class="topic-icon">🌌</span>
-      <h3>Theoretical physics &amp; cosmology</h3>
-      <p>Dark matter, gravitational waves, early-universe models, large-scale structure</p>
+      <div class="topic-img topic-img-3"></div>
+      <div class="topic-body">
+        <h3>Theoretical physics &amp; cosmology</h3>
+        <p>Dark matter, gravitational waves, early-universe models, large-scale structure</p>
+      </div>
     </div>
     <div class="topic-card">
-      <span class="topic-icon">🔬</span>
-      <h3>Materials in extreme environments</h3>
-      <p>High-Speed Propulsion, Materials in space-like conditions, protective material coatings</p>
+      <div class="topic-img topic-img-4"></div>
+      <div class="topic-body">
+        <h3>Materials in extreme environments</h3>
+        <p>High-Speed Propulsion, Materials in space-like conditions, protective material coatings</p>
+      </div>
     </div>
     <div class="topic-card">
-      <span class="topic-icon">⚙️</span>
-      <h3>Computational physics &amp; AI</h3>
-      <p>Plasma simulation methods, big-data analysis, AI and neural networks for astrophysics and space weather</p>
+      <div class="topic-img topic-img-5"></div>
+      <div class="topic-body">
+        <h3>Computational physics &amp; AI</h3>
+        <p>Plasma simulation methods, big-data analysis, AI and neural networks for astrophysics and space weather</p>
+      </div>
     </div>
     <div class="topic-card">
-      <span class="topic-icon">🔭</span>
-      <h3>Converging &amp; interdisciplinary fields</h3>
-      <p>Remote sensing, instrumentation, Dual-Use Space &amp; Naval Materials</p>
+      <div class="topic-img topic-img-6"></div>
+      <div class="topic-body">
+        <h3>Converging &amp; interdisciplinary fields</h3>
+        <p>Remote sensing, instrumentation, Dual-Use Space &amp; Naval Materials</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1402,6 +1502,104 @@
     <a href="https://maps.google.com/?q=Hotel+Ajavi+Ibarra+Ecuador" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:14px;">
       View on map →
     </a>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- PRACTICAL INFORMATION -->
+<section id="practical" class="reveal">
+  <p class="section-label">Practical information</p>
+  <h2>Plan your trip</h2>
+  <p>Everything you need to organise your travel to <strong>Hotel Ajaví, Ibarra</strong>, including transport from the airport, climate, visas and health. Fares, timetables and entry rules can change: treat the figures below as <strong>approximate</strong> and re-confirm them when you book.</p>
+
+  <div class="contrib-note" style="margin-top:1.25rem;align-items:flex-start;">
+    <div>
+      International flights arrive at <strong>Mariscal Sucre International Airport (UIO)</strong>, Tababela, Quito. No direct interprovincial buses leave the airport, and every route to Ibarra transits <strong>Terminal Carcelén</strong> (north Quito, ~27 km from the airport).
+    </div>
+  </div>
+
+  <div class="info-wrap">
+    <table class="info-table">
+      <thead>
+        <tr><th>Option</th><th>Route</th><th>Time</th><th>Price (USD)</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="opt-name">Public bus</span><span class="opt-tag">Cheapest</span></td>
+          <td>UIO: city shuttle bus → Terminal Carcelén: bus to Ibarra</td>
+          <td>~35–50 min + ~2h20–2h40</td>
+          <td class="it-price">≈ $2 + $4–5</td>
+        </tr>
+        <tr>
+          <td><span class="opt-name">Taxi + bus</span></td>
+          <td>UIO: taxi / Uber → Terminal Carcelén: bus to Ibarra</td>
+          <td>~35–50 min + ~2h20–2h40</td>
+          <td class="it-price">≈ $25–39 + $4–5</td>
+        </tr>
+        <tr>
+          <td><span class="opt-name">Private transfer</span><span class="opt-tag">Convenient</span></td>
+          <td>Door-to-door, airport → Hotel Ajaví</td>
+          <td>~2h – 2h20</td>
+          <td class="it-price">≈ $100–160</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ul class="practical-notes">
+    <li>Buses to Ibarra leave frequently from Terminal Carcelén (Expreso Tulcán, Pullman Carchi, Velotax Norte, Expreso Turismo). Buy your ticket at the terminal, no reservation needed.</li>
+    <li>Buses arrive at Terminal Terrestre de Ibarra (south of the city); a short taxi ride to Hotel Ajaví costs ≈ $1.50–2.50 (~5–10 min).</li>
+  </ul>
+
+  <div class="two-col" style="margin-top:2.5rem;align-items:start;">
+    <div class="climate-col">
+      <h3 style="font-size:1.05rem;color:var(--ink);margin-bottom:.6rem;">Climate &amp; sun in January</h3>
+      <p>Ibarra sits at ≈ 2,200 m in the Andean highlands and has a mild, spring-like climate year-round. January falls in the dry season: mostly clear days with the occasional shower, especially in the afternoon.</p>
+      <p style="margin-top:.75rem;"><strong>Daytime</strong> highs ≈ 16–20 °C; <strong>nights</strong> cool down to ≈ 7–10 °C. Pack a jacket!</p>
+      <p style="margin-top:.75rem;"><strong>UV radiation is intense at this altitude and latitude</strong>: forecasts for Ibarra frequently rate UV as very high, even on days that feel mild or partly cloudy. Sunscreen (SPF 30–50+), UV400 sunglasses, and a hat are essential, and drink plenty of water while you acclimatise.</p>
+    </div>
+    <div class="pack-box">
+      <h3>What to pack</h3>
+      <ul class="pack-list">
+        <li>Sunscreen SPF 30–50</li>
+        <li>UV400 sunglasses &amp; hat</li>
+        <li>Jacket or sweater</li>
+        <li>Walking shoes</li>
+        <li>US-style plug adapter, if needed</li>
+        <li>Travel insurance documents</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="policy-box" style="margin-top:2.5rem;">
+    <h3>⚠ Visas &amp; entry requirements</h3>
+    <p>Most participants — including citizens of the United States, Canada, the European Union, the UK, Australia, New Zealand, Japan and most Latin American countries — enter Ecuador <strong>without a visa for tourism for up to 90 days</strong>.</p>
+    <p style="margin-top:.6rem;"><strong>Since 1 September 2025, nationals of 45 jurisdictions (mostly in Africa and Asia)</strong> need an advance visa, including for transit through Ecuador. The full list of countries can be found <a href="https://www.cancilleria.gob.ec/2025/08/30/ecuador-exigira-visa-de-transeunte-a-partir-del-1-de-septiembre-de-2025/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">here</a>.</p>
+    <p style="margin-top:.6rem;">Need a <strong>visa invitation letter</strong>? The organising committee can issue one. Please email <a href="mailto:e.space2027@yachaytech.edu.ec" style="color:inherit;text-decoration:underline;text-underline-offset:2px;">e.space2027@yachaytech.edu.ec</a>.</p>
+    <p style="margin-top:.6rem;">Also, <strong>your passport must be valid for at least six months from the date you enter Ecuador</strong>, with at least one blank page for entry/exit stamps. Passports that don't meet this may be refused entry. Immigration officers may also ask for proof of onward/return travel; this is rarely checked in practice, but it's worth having ready.</p>
+  </div>
+
+  <div class="health-box">
+    <h3>Health &amp; vaccinations</h3>
+    <p><strong>No vaccinations are required</strong> to enter Ecuador. Since <strong>8 September 2025</strong>, Ecuador no longer requires the yellow fever certificate from people coming from Amazonian countries. However, the yellow fever vaccine is still recommended.</p>
+    <p style="margin-top:.6rem;">We also recommend you <strong>visit a travel-medicine practitioner before departure</strong> and keep routine immunisations up to date.</p>
+    <p style="margin-top:.6rem;">The venue sits at ≈ 2,200 m: most visitors feel no ill effects, but rest and hydrate during your first day, and go easy on alcohol until you acclimatise.</p>
+  </div>
+
+  <div class="venue-facts" style="margin-top:2.5rem;">
+    <div class="venue-fact"><div class="vf-label">Currency</div><div class="vf-val">US dollar (USD)</div></div>
+    <div class="venue-fact"><div class="vf-label">Language</div><div class="vf-val">Spanish · English at the hotel</div></div>
+    <div class="venue-fact"><div class="vf-label">Electricity</div><div class="vf-val">120 V · type A/B</div></div>
+    <div class="venue-fact"><div class="vf-label">Time zone</div><div class="vf-val">UTC−5 (Eastern Time)</div></div>
+    <div class="venue-fact"><div class="vf-label">Emergency</div><div class="vf-val">911</div></div>
+    <div class="venue-fact"><div class="vf-label">Tap water</div><div class="vf-val">Bottled water recommended</div></div>
+  </div>
+
+  <div class="practical-links">
+    <a href="https://maps.google.com/?q=Hotel+Ajavi+Ibarra+Ecuador" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:13px;">Hotel Ajaví on the map →</a>
+    <a href="https://www.aeropuertoquito.aero/?lang=en" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:13px;">Quito airport (UIO) →</a>
+    <a href="https://wwwnc.cdc.gov/travel/destinations/traveler/none/ecuador" target="_blank" rel="noopener" class="btn btn-outline" style="font-size:13px;">CDC · Ecuador travel health →</a>
   </div>
 </section>
 
