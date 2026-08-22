@@ -700,6 +700,9 @@
   .sponsor-item { opacity: 1; filter: grayscale(0); transition: opacity 0.2s, filter 0.2s; }
   .sponsor-item:hover { opacity: 0.8; filter: grayscale(0.15); }
   .sponsor-item img { max-height: 104px; max-width: 338px; display: block; }
+  /* Organised-by row: compact centered trio (CEDIA dead-centre, gaps ~1/3 of full spread) */
+  .sponsors-row-tight { justify-content: center; gap: 5rem; }
+  @media (max-width: 900px) { .sponsors-row-tight { gap: 2rem; } }
 
   /* ── HISTORY ── */
   .history-grid {
@@ -1647,9 +1650,10 @@
   <div class="sponsors-inner">
     <p class="section-label">Support</p>
     <h2>Organised by</h2>
-    <div class="sponsors-row">
-      <div class="sponsor-item"><a href="https://yachaytech.edu.ec" target="_blank" rel="noopener"><img src="astrosciences/images/LOGOTIPO-YACHAY-TECH-UITEY-2023.png" alt="Yachay Tech University" style="max-height:120px;max-width:389px;"/></a></div>
-      <div class="sponsor-item"><a href="https://cedia.edu.ec" target="_blank" rel="noopener"><img src="astrosciences/images/cedia.png" alt="CEDIA"/></a></div>
+    <div class="sponsors-row sponsors-row-tight">
+      <div class="sponsor-item"><a href="https://yachaytech.edu.ec" target="_blank" rel="noopener"><img src="astrosciences/images/LOGOTIPO-YACHAY-TECH-UITEY-2023.png" alt="Yachay Tech University" style="width:200px;height:auto;"/></a></div>
+      <div class="sponsor-item"><a href="https://cedia.edu.ec" target="_blank" rel="noopener"><img src="astrosciences/images/cedia.png" alt="CEDIA" style="max-height:90px;"/></a></div>
+      <div class="sponsor-item"><a href="https://www.epn.edu.ec" target="_blank" rel="noopener"><img src="astrosciences/images/epn.png" alt="Escuela Politécnica Nacional" style="width:200px;height:auto;"/></a></div>
     </div>
     <p class="section-label mt2" style="margin-bottom:1rem;">With the kind support of</p>
     <div class="sponsors-row" style="padding:1.5rem;">
