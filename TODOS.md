@@ -18,13 +18,13 @@
 
 - [ ] **Add other universiy logos**
 
-  Do when confirming support from each university.
+  Added EPN.
 
 - [ ] **Create a FAQ section**
 
   Frequent questions about the conference to reduce the number of emails.
 
-- [ ] **Add member to Support Team**
+- [x] **Add member to Support Team**
 
   Add Mariannly, Juan Daniel and I to the conference Support Team.
 
