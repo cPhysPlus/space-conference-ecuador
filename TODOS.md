@@ -16,6 +16,10 @@
 
   Public free-use image for each topic. Varied colors.
 
+- [x] **Announce first keynote speaker**
+
+  Eleanor E. B. Campbell — featured keynote card replacing TBC placeholders.
+
 - [ ] **Add other universiy logos**
 
   Added EPN.

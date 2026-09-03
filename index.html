@@ -336,45 +336,51 @@
   .stat-box .stat-n { font-family: var(--mono); font-size: 2rem; font-weight: 700; color: var(--accent2); }
   .stat-box .stat-l { font-size: 0.78rem; color: var(--dim); margin-top: 0.2rem; }
 
-  /* ── KEYNOTE ── */
-  .keynote-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+  /* ── SPEAKERS ── */
+  .speaker-card {
+    display: flex; gap: 2.5rem; align-items: stretch;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden; margin-top: 2rem;
+    box-shadow: 0 4px 24px rgba(8,24,72,0.07);
+  }
+  .speaker-photo {
+    flex: 0 0 300px; width: 300px; aspect-ratio: 4/5; align-self: flex-start;
     margin-top: 2rem;
+    border-radius: 10px; overflow: hidden;
+    border: 1px solid var(--border); box-shadow: 0 2px 10px rgba(8,24,72,0.05);
+    background: var(--bg2);
+    margin-left: 4.0rem;
   }
-  .keynote-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1.5rem 1.25rem;
-    text-align: center;
-    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-    box-shadow: 0 2px 8px rgba(8,24,72,0.05);
+  .speaker-photo img {
+    width: 100%; height: 100%; object-fit: cover;
+    object-position: 62% center; display: block;
   }
-  .keynote-card:hover {
-    border-color: var(--border-em);
-    box-shadow: 0 6px 22px rgba(8,24,72,0.10);
-    transform: translateY(-2px);
+  .speaker-body {
+    flex: 1; padding: 2rem 1.0rem;
+    display: flex; flex-direction: column; align-items: flex-start;
   }
-  .keynote-avatar {
-    width: 56px; height: 56px;
-    border-radius: 50%;
-    background: var(--accent-bg);
-    border: 2px solid var(--border-em);
-    display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 0.75rem;
-    font-size: 1.4rem;
+  .speaker-name {
+    font-size: 1.55rem; font-weight: 700; color: var(--ink);
+    letter-spacing: -0.01em; line-height: 1.15; margin-bottom: 0.35rem;
   }
-  .keynote-card .kn-name { font-size: 0.9rem; font-weight: 600; color: var(--ink); margin-bottom: 0.2rem; }
-  .keynote-card .kn-inst { font-size: 0.78rem; color: var(--dim); }
-  .tbc-badge {
-    display: inline-block;
-    font-family: var(--mono);
-    font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--dim);
-    background: var(--surface2); border: 1px solid var(--border);
-    border-radius: 100px; padding: 0.15rem 0.6rem; margin-top: 0.4rem;
+  .speaker-role { font-size: 0.9rem; color: var(--accent2); font-weight: 500; margin-bottom: 0; line-height: 1.5; }
+  .speaker-bio { font-size: 0.92rem; color: var(--muted); line-height: 1.7; max-width: 620px; }
+  .speaker-topics { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.15rem; }
+  .stopic {
+    font-size: 11px; font-family: var(--mono); padding: 0.25rem 0.7rem; border-radius: 100px;
+    background: var(--accent-bg); color: var(--accent); border: 1px solid var(--border-em); font-weight: 500;
+  }
+  .speaker-links { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-top: auto; padding-top: 1.25rem; }
+  .speaker-link {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.05em; color: var(--accent2);
+    text-decoration: none; border-bottom: 1px solid var(--border-em); padding-bottom: 1px;
+    transition: color 0.15s;
+  }
+  .speaker-link:hover { color: var(--accent); }
+  @media (max-width: 720px) {
+    .speaker-card { flex-direction: column; gap: 0; }
+    .speaker-photo { flex: none; width: 100%; min-height: 0; aspect-ratio: 4/3; margin: 0; }
+    .speaker-body { padding: 1.5rem; }
   }
 
   /* ── TOPICS ── */
@@ -872,7 +878,6 @@
 
   /* ── MOBILE RESPONSIVE ── */
   @media (max-width: 900px) {
-    .keynote-grid { grid-template-columns: repeat(2, 1fr); }
     .topics-grid { grid-template-columns: repeat(2, 1fr); }
     .soc-grid { grid-template-columns: repeat(2, 1fr); }
     .history-grid { grid-template-columns: repeat(2, 1fr); }
@@ -898,7 +903,6 @@
     section { padding: 3rem 5vw; }
 
     /* Grids → 1 column */
-    .keynote-grid { grid-template-columns: 1fr; }
     .topics-grid { grid-template-columns: 1fr; }
     .soc-grid { grid-template-columns: 1fr; }
     .contrib-grid { grid-template-columns: 1fr; }
@@ -1026,46 +1030,25 @@
 <section id="speakers" class="reveal">
   <p class="section-label">Invited speakers</p>
   <h2>Keynote speakers</h2>
-  <p>We are pleased to announce our keynote speakers for eSPACE 2027. The full list will be published in <strong>September 2026</strong>.</p>
+  <p>Further announcements regarding keynote speakers will follow in <strong>September 2026</strong>.</p>
 
-  <div class="keynote-grid">
-    <div class="keynote-card">
-      <div class="keynote-avatar">🔭</div>
-      <div class="kn-name">To be confirmed</div>
-      <div class="kn-inst">Astrophysics &amp; plasma physics</div>
-      <span class="tbc-badge">TBC · Aug 2026</span>
+    <div class="speaker-card">
+    <div class="speaker-photo"><img src="astrosciences/people/ecampbell.jpeg" alt="Eleanor E. B. Campbell"/></div>
+    <div class="speaker-body">
+      <h3 class="speaker-name">Eleanor E. B. Campbell</h3>
+      <p class="speaker-role">Professor Emeritus of Chemistry, University of Edinburgh<br/>Fellow of the Royal Society</p>
+      <p class="speaker-bio">Eleanor E. B. Campbell is Professor Emeritus of Chemistry at the University of Edinburgh. A Fellow of the Royal Society, she held a chair at the University of Gothenburg and led a department at the Max Born Institute, building her career on the physics of highly excited molecules, nanoclusters and carbon nanostructures. Her research bridges femtosecond laser spectroscopy, ion–surface interactions and the behaviour of molecular materials under extreme excitation.</p>
+      <div class="speaker-topics">
+        <span class="stopic">Chemistry</span>
+        <span class="stopic">Physics</span>
+        <span class="stopic">Nanoscience</span>
+        <span class="stopic">Materials in extreme environments</span>
+      </div>
+      <div class="speaker-links">
+        <a class="speaker-link" href="https://edwebprofiles.ed.ac.uk/profile/professor-eleanor-e-b-campbell" target="_blank" rel="noopener">Edinburgh profile →</a>
+        <a class="speaker-link" href="https://scholar.google.com/citations?user=kKYFeBsAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar →</a>
+      </div>
     </div>
-    <div class="keynote-card">
-      <div class="keynote-avatar">🌌</div>
-      <div class="kn-name">To be confirmed</div>
-      <div class="kn-inst">Theoretical physics &amp; cosmology</div>
-      <span class="tbc-badge">TBC · Aug 2026</span>
-    </div>
-    <div class="keynote-card">
-      <div class="keynote-avatar">⚙️</div>
-      <div class="kn-name">To be confirmed</div>
-      <div class="kn-inst">Computational physics &amp; AI</div>
-      <span class="tbc-badge">TBC · Aug 2026</span>
-    </div>
-    <div class="keynote-card">
-      <div class="keynote-avatar">☀️</div>
-      <div class="kn-name">To be confirmed</div>
-      <div class="kn-inst">Space weather &amp; climate</div>
-      <span class="tbc-badge">TBC · Aug 2026</span>
-    </div>
-    <div class="keynote-card">
-      <div class="keynote-avatar">🔬</div>
-      <div class="kn-name">To be confirmed</div>
-      <div class="kn-inst">Materials in extreme environments</div>
-      <span class="tbc-badge">TBC · Aug 2026</span>
-    </div>
-    <div class="keynote-card">
-      <div class="keynote-avatar">🛰️</div>
-      <div class="kn-name">To be confirmed</div>
-      <div class="kn-inst">Converging &amp; interdisciplinary fields</div>
-      <span class="tbc-badge">TBC · Aug 2026</span>
-    </div>
-  </div>
 </section>
 
 <hr class="divider"/>
