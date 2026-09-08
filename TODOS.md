@@ -19,6 +19,7 @@
 - [ ] **Add speakers**
 
   Eleanor E. B. Campbell.
+  Juan Diego Soler.
 
 - [ ] **Add other universiy logos**
 
