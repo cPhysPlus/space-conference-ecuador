@@ -19,7 +19,10 @@
 - [ ] **Add speakers**
 
   Eleanor E. B. Campbell.
+
   Juan Diego Soler.
+
+  Maria Celeste Artale.
 
 - [ ] **Add other universiy logos**
 

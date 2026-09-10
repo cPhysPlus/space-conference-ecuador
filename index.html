@@ -337,30 +337,36 @@
   .stat-box .stat-l { font-size: 0.78rem; color: var(--dim); margin-top: 0.2rem; }
 
   /* ── SPEAKERS ── */
+  #speakers { max-width: 1400px; }
+  .speakers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+    align-items: stretch;
+  }
   .speaker-card {
-    display: flex; gap: 2.5rem; align-items: stretch;
+    display: flex; flex-direction: column; gap: 0;
     background: var(--surface); border: 1px solid var(--border);
-    border-radius: 12px; overflow: hidden; margin-top: 2rem;
+    border-radius: 12px; overflow: hidden;
     box-shadow: 0 4px 24px rgba(8,24,72,0.07);
   }
   .speaker-photo {
-    flex: 0 0 300px; width: 300px; aspect-ratio: 4/5; align-self: flex-start;
-    margin-top: 2rem;
-    border-radius: 10px; overflow: hidden;
-    border: 1px solid var(--border); box-shadow: 0 2px 10px rgba(8,24,72,0.05);
+    flex: none; width: 100%; aspect-ratio: 4/3;
+    overflow: hidden;
+    border: none; border-bottom: 1px solid var(--border);
     background: var(--bg2);
-    margin-left: 4.0rem;
   }
   .speaker-photo img {
     width: 100%; height: 100%; object-fit: cover;
     object-position: 62% center; display: block;
   }
   .speaker-body {
-    flex: 1; padding: 2rem 1.0rem;
+    flex: 1; padding: 1.5rem;
     display: flex; flex-direction: column; align-items: flex-start;
   }
   .speaker-name {
-    font-size: 1.55rem; font-weight: 700; color: var(--ink);
+    font-size: 1.35rem; font-weight: 700; color: var(--ink);
     letter-spacing: -0.01em; line-height: 1.15; margin-bottom: 0.35rem;
   }
   .speaker-role { font-size: 0.9rem; color: var(--accent2); font-weight: 500; margin-bottom: 0; line-height: 1.5; }
@@ -377,10 +383,11 @@
     transition: color 0.15s;
   }
   .speaker-link:hover { color: var(--accent); }
+  @media (max-width: 1024px) {
+    .speakers-grid { grid-template-columns: repeat(2, 1fr); }
+  }
   @media (max-width: 720px) {
-    .speaker-card { flex-direction: column; gap: 0; }
-    .speaker-photo { flex: none; width: 100%; min-height: 0; aspect-ratio: 4/3; margin: 0; }
-    .speaker-body { padding: 1.5rem; }
+    .speakers-grid { grid-template-columns: 1fr; }
   }
 
   /* ── TOPICS ── */
@@ -1032,17 +1039,38 @@
   <h2>Keynote speakers</h2>
   <p>Further announcements regarding keynote speakers will follow in <strong>September 2026</strong>.</p>
 
+  <div class="speakers-grid">
+
+    <div class="speaker-card">
+    <div class="speaker-photo"><img src="astrosciences/people/martale.jpeg" alt="Maria Celeste Artale"/></div>
+    <div class="speaker-body">
+      <h3 class="speaker-name">Maria Celeste Artale</h3>
+      <p class="speaker-role">Associate Professor, Universidad Andrés Bello<br/>Astrophysics Institute, UNAB, Chile</p>
+      <p class="speaker-bio">Maria Celeste Artale is an Associate Professor at Universidad Andrés Bello (UNAB) in Chile. Her research spans theoretical astrophysics, with emphasis on the host galaxies of binary compact object mergers, short gamma-ray bursts and X-ray binaries, high-redshift galaxies as protocluster tracers, and the connection between dark matter haloes and galaxy properties.</p>
+      <div class="speaker-topics">
+        <span class="stopic">Gravitational Waves</span>
+        <span class="stopic">X-ray Binaries</span>
+        <span class="stopic">Galaxy Formation</span>
+        <span class="stopic">Dark Matter Haloes</span>
+        <span class="stopic">Large-Scale Structure</span>
+      </div>
+      <div class="speaker-links">
+        <a class="speaker-link" href="https://www.celesteartale.com/" target="_blank" rel="noopener">Personal website →</a>
+        <a class="speaker-link" href="https://scholar.google.com/citations?user=mA8u9VMAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar →</a>
+      </div>
+    </div>
+    </div>
+
     <div class="speaker-card">
     <div class="speaker-photo"><img src="astrosciences/people/ecampbell.jpeg" alt="Eleanor E. B. Campbell"/></div>
     <div class="speaker-body">
       <h3 class="speaker-name">Eleanor E. B. Campbell</h3>
-      <p class="speaker-role">Professor Emeritus of Chemistry, University of Edinburgh<br/>Fellow of the Royal Society</p>
+      <p class="speaker-role">Professor Emeritus of Chemistry, University of Edinburgh • Fellow of the Royal Society</p>
       <p class="speaker-bio">Eleanor E. B. Campbell is Professor Emeritus of Chemistry at the University of Edinburgh. A Fellow of the Royal Society, she held a chair at the University of Gothenburg and led a department at the Max Born Institute, building her career on the physics of highly excited molecules, nanoclusters and carbon nanostructures. Her research bridges femtosecond laser spectroscopy, ion–surface interactions and the behaviour of molecular materials under extreme excitation.</p>
       <div class="speaker-topics">
         <span class="stopic">Chemistry</span>
         <span class="stopic">Physics</span>
         <span class="stopic">Nanoscience</span>
-        <span class="stopic">Materials in extreme environments</span>
       </div>
       <div class="speaker-links">
         <a class="speaker-link" href="https://edwebprofiles.ed.ac.uk/profile/professor-eleanor-e-b-campbell" target="_blank" rel="noopener">Edinburgh profile →</a>
@@ -1056,7 +1084,7 @@
     <div class="speaker-body">
       <h3 class="speaker-name">Juan Diego Soler</h3>
       <p class="speaker-role">Astrophysicist, University of Vienna<br/>Funded by the Austrian Science Fund (FWF)</p>
-      <p class="speaker-bio">Juan Diego Soler is an astrophysicist at the University of Vienna's Astronomy Department, funded by the Austrian Science Fund (FWF). He develops statistical tools to study the interstellar medium (ISM), combining radio and far-infrared observations with numerical simulations to understand the physical processes that shape the clouds of gas and dust in the Milky Way. Beyond research, he writes science outreach columns for <a href="https://www.elespectador.com/opinion/columnistas/juan-diego-soler/" target="_blank" rel="noopener" style="color:var(--accent2);text-decoration:none;border-bottom:1px solid var(--border-em);">El Espectador</a> and is the author of two <a href="https://juandiegosoler.com/my-books/" target="_blank" rel="noopener" style="color:var(--accent2);text-decoration:none;border-bottom:1px solid var(--border-em);">books</a> on Antarctic astronomical explorations.</p>
+      <p class="speaker-bio">Juan Diego Soler is an astrophysicist at the University of Vienna's Astronomy Department. He develops statistical tools to study the interstellar medium (ISM), combining radio and far-infrared observations with numerical simulations to understand the physical processes that shape the clouds of gas and dust in the Milky Way. Beyond research, he writes science outreach columns for <a href="https://www.elespectador.com/opinion/columnistas/juan-diego-soler/" target="_blank" rel="noopener" style="color:var(--accent2);text-decoration:none;border-bottom:1px solid var(--border-em);">El Espectador</a> and is the author of two <a href="https://juandiegosoler.com/my-books/" target="_blank" rel="noopener" style="color:var(--accent2);text-decoration:none;border-bottom:1px solid var(--border-em);">books</a> on Antarctic astronomical explorations.</p>
       <div class="speaker-topics">
         <span class="stopic">Astrophysics</span>
         <span class="stopic">Data analysis</span>
@@ -1068,6 +1096,7 @@
       </div>
     </div>
     </div>
+  </div>
 </section>
 
 <hr class="divider"/>
