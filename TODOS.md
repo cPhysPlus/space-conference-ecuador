@@ -24,6 +24,34 @@
 
   Maria Celeste Artale.
 
+  Enrique Vázquez-Semadeni.
+
+  Yeinzon Rodriguez Garcia.
+
+- [x] **Update venue and dates**
+
+  Hotel Ajaví, Ibarra. Registration opens October 2026.
+
+- [x] **Add payment link**
+
+  One CEDIA link for all three categories.
+
+- [x] **Add conference flyer**
+
+  Own section with share button and social media links.
+
+- [x] **Shorten speaker and registration cards**
+
+  "Read more" for bios, compact registration cards.
+
+- [x] **Improve hero animation**
+
+  Fixed flickering, added planets orbiting the title.
+
+- [x] **Add website icon and link preview**
+
+  Tab icon, home-screen icon and preview image for shared links.
+
 - [ ] **Add other universiy logos**
 
   Added EPN.

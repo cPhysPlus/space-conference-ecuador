@@ -3,7 +3,21 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>eSPACE 2027 — International Conference on Astrophysics &amp; Space Science</title>
+<title>eSPACE 2027 | International Conference on Astrophysics &amp; Space Science</title>
+<meta name="description" content="International Conference on Astrophysics, Space Science and Converging Disciplines. 4–8 January 2027, Ibarra, Ecuador."/>
+<!-- Link previews (WhatsApp, LinkedIn, Facebook, X, Slack…) -->
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="eSPACE 2027"/>
+<meta property="og:title" content="eSPACE 2027 | International Conference on Astrophysics &amp; Space Science"/>
+<meta property="og:description" content="International Conference on Astrophysics, Space Science and Converging Disciplines. 4–8 January 2027, Ibarra, Ecuador."/>
+<meta property="og:url" content="https://www.e-space2027.com/"/>
+<meta property="og:image" content="https://www.e-space2027.com/astrosciences/images/og-image.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="eSPACE 2027 logo"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" href="favicon.ico" sizes="any"/>
+<link rel="apple-touch-icon" href="apple-touch-icon.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
@@ -111,7 +125,13 @@
     z-index: 0; pointer-events: none;
   }
 
-  .hero > *:not(#astrocanvas) { position: relative; z-index: 1; }
+  .hero > *:not(canvas) { position: relative; z-index: 1; }
+  /* Front layer: planets on the near half of their orbits pass in front of the title (FX.weave) */
+  #astrocanvas-front {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    z-index: 2; pointer-events: none;
+  }
 
   .hero-eyebrow {
     font-family: var(--mono);
@@ -371,6 +391,17 @@
   }
   .speaker-role { font-size: 0.9rem; color: var(--accent2); font-weight: 500; margin-bottom: 0; line-height: 1.5; }
   .speaker-bio { font-size: 0.92rem; color: var(--muted); line-height: 1.7; max-width: 620px; }
+  /* "Read more": bios are clamped by JS, so without JS they show in full */
+  .speaker-card.bio-clamped .speaker-bio {
+    display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; line-clamp: 4; overflow: hidden;
+    -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent);
+            mask-image: linear-gradient(to bottom, #000 55%, transparent);
+  }
+  .speaker-more {
+    background: none; border: none; padding: 0; margin-top: 0.5rem; cursor: pointer;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.05em; color: var(--accent2);
+  }
+  .speaker-more:hover { color: var(--accent); }
   .speaker-topics { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.15rem; }
   .stopic {
     font-size: 11px; font-family: var(--mono); padding: 0.25rem 0.7rem; border-radius: 100px;
@@ -551,31 +582,54 @@
     .iop-badge { writing-mode: horizontal-tb; transform: none; }
   }
 
+  /* Conference flyer */
+  .flyer-block { display: flex; align-items: center; justify-content: center; gap: 3rem; }
+  .flyer-thumb img {
+    width: 360px; height: auto; display: block; border-radius: 8px;
+    border: 1px solid var(--border); box-shadow: 0 4px 24px rgba(8,24,72,0.12);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .flyer-thumb:hover img { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(8,24,72,0.18); }
+  .flyer-actions { display: flex; flex-direction: column; gap: 0.75rem; width: 260px; }
+  .flyer-actions .btn { justify-content: center; font-size: 14px; }
+  .flyer-follow { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; color: var(--dim); text-transform: uppercase; margin-top: 1rem; text-align: center; }
+  @media (max-width: 640px) {
+    .flyer-block { flex-direction: column; gap: 1.75rem; }
+    .flyer-thumb img { width: min(320px, 100%); }
+    .flyer-actions { width: min(320px, 100%); }
+  }
+
   /* ── REGISTRATION ── */
-  .reg-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
+  .reg-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; margin-top: 0.75rem; }
   @media (max-width: 900px) { .reg-grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 600px) { .reg-grid { grid-template-columns: 1fr; } }
   .reg-card {
     background: var(--surface); border: 1px solid var(--border);
-    border-radius: 10px; padding: 2rem; position: relative;
+    border-radius: 10px; padding: 1.4rem 1.5rem; position: relative;
     box-shadow: 0 2px 10px rgba(8,24,72,0.05);
+    /* Share row tracks across cards so prices, lists and buttons line up */
+    display: grid; grid-template-rows: subgrid; grid-row: span 3; row-gap: 0;
   }
   .reg-card.featured { border-color: var(--accent2); border-width: 2px; }
   .reg-badge {
-    position: absolute; top: 1rem; right: 1rem;
+    position: absolute; top: 0; right: 1.25rem; transform: translateY(-50%);   /* sits on the top border */
     font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
     padding: 0.2rem 0.6rem; border-radius: 100px;
-    background: var(--accent-bg); color: var(--accent); border: 1px solid var(--border-em);
+    background: var(--accent-bg); color: var(--accent); border: 1px solid var(--accent2);
+    box-shadow: 0 0 0 3px var(--bg);
   }
   .reg-type { font-family: var(--mono); font-size: 10px; letter-spacing: 0.15em; color: var(--dim); text-transform: uppercase; margin-bottom: 0.4rem; }
-  .reg-role { font-size: 1.2rem; font-weight: 600; color: var(--ink); margin-bottom: 1.25rem; }
-  .price-row { display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.35rem; }
-  .price-early { font-size: 2rem; font-weight: 700; color: var(--teal); font-family: var(--mono); }
+  .reg-role { font-size: 1.1rem; font-weight: 600; color: var(--ink); line-height: 1.3; margin-bottom: 0.6rem; }
+  .price-row { display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.75rem; }
+  .price-early { font-size: 1.75rem; font-weight: 700; color: var(--teal); font-family: var(--mono); }
   .price-regular { font-size: 1rem; color: var(--dim); text-decoration: line-through; font-family: var(--mono); }
   .price-label { font-size: 11.5px; color: var(--dim); margin-bottom: 1.5rem; }
-  .reg-includes { list-style: none; margin-bottom: 1.75rem; }
+  .reg-key { font-family: var(--mono); font-size: 11.5px; color: var(--dim); margin-top: 1.25rem; }
+  .reg-key .k-early { color: var(--teal); font-weight: 700; }
+  .reg-key .k-regular { text-decoration: line-through; }
+  .reg-includes { list-style: none; margin-bottom: 1rem; }
   .reg-includes li {
-    font-size: 13.5px; color: var(--muted); padding: 0.35rem 0;
+    font-size: 13px; line-height: 1.45; color: var(--muted); padding: 0.28rem 0;
     border-bottom: 1px solid var(--border);
     display: flex; align-items: center; gap: 0.6rem;
   }
@@ -590,6 +644,20 @@
   .subsidy-box::before { content: '★'; flex-shrink: 0; color: var(--gold); }
 
   /* ── POLICY BOX ── */
+  .reg-card > :last-child, .reg-card > :last-child > :last-child { margin-bottom: 0; }
+  .pay-bar {
+    display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+    margin-top: 1.25rem; padding: 1.1rem 1.5rem;
+    background: var(--surface); border: 1px solid var(--border-em); border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(8,24,72,0.05);
+  }
+  .pay-bar-title { font-weight: 600; color: var(--ink); margin-bottom: 0.25rem; }
+  .pay-bar p { font-size: 0.875rem; color: var(--muted); margin: 0; }
+  .pay-bar .btn { flex-shrink: 0; }
+  @media (max-width: 640px) {
+    .pay-bar { flex-direction: column; align-items: stretch; text-align: center; padding: 1.5rem; }
+    .pay-bar .btn { justify-content: center; }
+  }
   .policy-box {
     background: var(--gold-bg); border: 1px solid var(--gold-bdr);
     border-radius: 8px; padding: 1.4rem 1.75rem; margin-top: 2rem;
@@ -926,6 +994,7 @@
     .sponsor-item img { max-height: 56px; max-width: 160px; }
 
     /* Image frames */
+    .image-frame { aspect-ratio: auto; }
     .image-frame img { max-height: 220px; object-fit: cover; }
 
     /* Programme highlights image */
@@ -966,7 +1035,7 @@
 <div class="hero">
   <canvas id="astrocanvas"></canvas>
 
-  <p class="hero-eyebrow">4–8 January 2027 · Yachay Tech, Ecuador</p>
+  <p class="hero-eyebrow">4–8 January 2027 · Ibarra, Ecuador</p>
 
   <div class="hero-title-big">eSPACE<br/>2027</div>
   <p class="hero-title-sub">International Conference on Astrophysics, Space Science and Converging Disciplines</p>
@@ -979,11 +1048,11 @@
     </div>
     <div class="hero-meta-item">
       <span class="label">Venue</span>
-      <span class="value">Yachay Tech Campus</span>
+      <span class="value">Hotel Ajaví</span>
     </div>
     <div class="hero-meta-item">
       <span class="label">Location</span>
-      <span class="value">Urcuquí, Ecuador</span>
+      <span class="value">Ibarra, Ecuador</span>
     </div>
     <div class="hero-meta-item">
       <span class="label">Format</span>
@@ -1034,11 +1103,32 @@
 
 <hr class="divider"/>
 
+<!-- FLYER -->
+<section id="flyer" class="reveal">
+  <p class="section-label">Flyer &amp; social media</p>
+  <h2>Spread the word</h2>
+
+  <div class="flyer-block mt2">
+    <a class="flyer-thumb" href="astrosciences/images/Flyer_v6.png" target="_blank" rel="noopener">
+      <img src="astrosciences/images/flyer-thumb.jpg" alt="eSPACE 2027 conference flyer" loading="lazy"/>
+    </a>
+    <div class="flyer-actions">
+      <button type="button" id="flyer-share" class="btn btn-primary" data-file="astrosciences/images/Flyer_v6.png">Share the flyer</button>
+      <a href="astrosciences/images/Flyer_v6.png" download="eSPACE2027_flyer.png" class="btn btn-outline">Download flyer (PNG) ↓</a>
+      <p class="flyer-follow">Follow eSPACE</p>
+      <a href="https://www.instagram.com/e.space.conf/" target="_blank" rel="noopener" class="btn btn-outline">Instagram →</a>
+      <a href="https://www.linkedin.com/company/espaceconference/" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn →</a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
 <!-- KEYNOTE SPEAKERS -->
 <section id="speakers" class="reveal">
   <p class="section-label">Invited speakers</p>
   <h2>Keynote speakers</h2>
-  <p>Further announcements regarding keynote speakers will follow in <strong>September 2026</strong>.</p>
+  <p>Further announcements regarding keynote speakers will follow in <strong>October 2026</strong>.</p>
 
   <div class="speakers-grid">
 
@@ -1119,9 +1209,7 @@
     </div>
 
     <div class="speaker-card">
-    <div class="speaker-photo" style="background:var(--bg2);display:flex;align-items:center;justify-content:center;">
-      <span style="font-size:3rem;color:var(--border);">📷</span>
-    </div>
+    <div class="speaker-photo"><img src="astrosciences/people/yrodriguez.png" alt="Yeinzon Rodriguez Garcia" style="object-position: center top;"/></div>
     <div class="speaker-body">
       <h3 class="speaker-name">Yeinzon Rodriguez Garcia</h3>
       <p class="speaker-role">Full Professor, Universidad Industrial de Santander, Colombia</p>
@@ -1206,11 +1294,6 @@
   <div class="two-col">
     <div class="timeline">
       <div class="tl-item">
-        <div class="tl-date">August 2026</div>
-        <h3>Registration opens</h3>
-        <p>Early-bird fee available from this date.</p>
-      </div>
-      <div class="tl-item">
         <div class="tl-date">1 September 2026</div>
         <h3>Call for contributions opens</h3>
         <p>Abstract submission portal goes live on <a href="https://www.morressier.com/call-for-abstracts/ESPACE-2027" target="_blank" rel="noopener" style="color:var(--accent2);text-decoration:none;border-bottom:1px solid var(--border-em);">Morressier</a>.</p>
@@ -1219,6 +1302,11 @@
         <div class="tl-date">September 2026</div>
         <h3>Confirmed speakers announced</h3>
         <p>Full keynote speaker list published.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">October 2026</div>
+        <h3>Registration opens</h3>
+        <p>Early-bird fee available from this date.</p>
       </div>
       <div class="tl-item">
         <div class="tl-date">23 November 2026</div>
@@ -1243,7 +1331,7 @@
       <div class="tl-item">
         <div class="tl-date">4 – 8 January 2027</div>
         <h3>eSPACE 2027</h3>
-        <p>Yachay Tech Campus, Urcuquí, Ecuador.</p>
+        <p>Hotel Ajaví, Ibarra, Ecuador.</p>
       </div>
       <div class="tl-item">
         <div class="tl-date">February 2027</div>
@@ -1256,9 +1344,10 @@
     </div>
 
     <div>
-      <div class="image-frame" style="margin-bottom:1.25rem;">
-        <img src="astrosciences/images/Residencias.jpg" alt="eSPACE conference"/>
+      <div class="image-frame">
+        <img src="astrosciences/images/imbabura-volcano.jpg" alt="Imbabura Volcano above the fields near Ibarra, Ecuador"/>
       </div>
+      <p class="image-caption" style="margin-bottom:1.25rem;">Imbabura Volcano, near Ibarra, Ecuador</p>
       <div class="card">
       <h3 style="color:var(--accent);margin-bottom:1rem;">Programme highlights</h3>
       <ul class="highlights-list">
@@ -1452,17 +1541,19 @@
 <section id="registration" class="reveal">
   <p class="section-label">Registration</p>
   <h2>Registration &amp; fees</h2>
-  <p>Fees cover all administration (including certificate of attendance and conference materials), coffee breaks, lunches, and use of the conference venue. Travel, accommodation, and dinners are arranged independently. <strong>Registration opens August 2026.</strong> Early-bird pricing is available until <strong>30 November 2026</strong>.</p>
+  <p>Fees cover all administration (including certificate of attendance and conference materials), coffee breaks, lunches, and use of the conference venue. Travel, accommodation, and dinners are arranged independently. <strong>Registration opens October 2026.</strong> Early-bird pricing is available until <strong>30 November 2026</strong>.</p>
+
+  <p class="reg-key">Prices in USD · <span class="k-early">early-bird</span> until 30 Nov 2026 · <span class="k-regular">regular</span> until 15 Dec 2026</p>
 
   <div class="reg-grid">
     <div class="reg-card">
-      <div class="reg-type">Category</div>
-      <div class="reg-role">Faculty / Professor / Postdoc</div>
+      <div class="reg-head">
+        <div class="reg-role">Faculty / Professor / Postdoc</div>
+      </div>
       <div class="price-row">
         <span class="price-early">$290</span>
         <span class="price-regular">$340</span>
       </div>
-      <div class="price-label">Early-bird (by 30 Nov) / Regular (by 15 Dec) · USD</div>
       <ul class="reg-includes">
         <li>Morning &amp; afternoon coffee breaks (5 days)</li>
         <li>Lunches at the venue (5 days)</li>
@@ -1470,20 +1561,17 @@
         <li>Proceedings volume (digital)</li>
         <li>Conference materials</li>
       </ul>
-      <a class="btn btn-outline btn-disabled" style="width:100%;justify-content:center;">
-        Pay — link coming soon
-      </a>
     </div>
 
     <div class="reg-card featured">
       <div class="reg-badge">Students</div>
-      <div class="reg-type">Category</div>
-      <div class="reg-role">Graduate / Undergraduate Student</div>
+      <div class="reg-head">
+        <div class="reg-role">Graduate / Undergraduate Student</div>
+      </div>
       <div class="price-row">
         <span class="price-early">$90</span>
         <span class="price-regular">$110</span>
       </div>
-      <div class="price-label">Early-bird (by 30 Nov) / Regular (by 15 Dec) · USD</div>
       <ul class="reg-includes">
         <li>Morning &amp; afternoon coffee breaks (5 days)</li>
         <li>Lunches at the venue (5 days)</li>
@@ -1491,29 +1579,33 @@
         <li>Proceedings volume (digital)</li>
         <li>Conference materials</li>
       </ul>
-      <a class="btn btn-gold btn-disabled" style="width:100%;justify-content:center;color:#fff;">
-        Pay — link coming soon
-      </a>
     </div>
 
     <div class="reg-card">
-      <div class="reg-type">Category</div>
-      <div class="reg-role">Single-Day Registration</div>
-      <p style="font-size:12.5px;color:var(--muted);margin-bottom:1rem;">Open to everyone — faculty, students, and professionals. Register for any single day of the conference.</p>
+      <div class="reg-head">
+        <div class="reg-role">Single-Day Registration</div>
+      </div>
       <div class="price-row">
         <span class="price-early">$60</span>
         <span class="price-regular">$70</span>
       </div>
-      <div class="price-label">Early-bird (by 30 Nov) / Regular (by 15 Dec) · USD</div>
+      <div>
       <ul class="reg-includes">
         <li>Morning &amp; afternoon coffee breaks (1 day)</li>
         <li>Lunch at the venue (1 day)</li>
         <li>Conference venue &amp; AV access (1 day)</li>
       </ul>
-      <a class="btn btn-outline btn-disabled" style="width:100%;justify-content:center;">
-        Pay — link coming soon
-      </a>
+      <p style="font-size:12.5px;line-height:1.5;color:var(--muted);margin:-0.4rem 0 0;">Open to everyone — faculty, students, and professionals. Register for any single day of the conference.</p>
+      </div>
     </div>
+  </div>
+
+  <div class="pay-bar">
+    <div class="pay-bar-text">
+      <div class="pay-bar-title">Payment link</div>
+      <p>One link for all three categories: choose yours on the CEDIA payment page.</p>
+    </div>
+    <a href="https://pagos.cedia.edu.ec/transaction?code=c3J2PTZhYzZiNDQ0ZGQyMjMxNDg5M2UxNTNiNA%3D%3D" target="_blank" rel="noopener" class="btn btn-primary">Pay registration →</a>
   </div>
 
   <div class="policy-box">
@@ -1844,8 +1936,10 @@
 <footer>
   <a class="footer-logo" href="#">eSPACE 2027</a>
   <div class="footer-links">
-    <a href="https://x.com/UniYachayTech" target="_blank">X / Twitter</a>
-    <a href="https://www.instagram.com/uniyachaytech" target="_blank">Instagram</a>
+    <a href="https://www.instagram.com/e.space.conf/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.linkedin.com/company/espaceconference/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://x.com/UniYachayTech" target="_blank">Yachay Tech on X</a>
+    <a href="https://www.instagram.com/uniyachaytech" target="_blank">Yachay Tech on Instagram</a>
     <a href="https://github.com/cPhysPlus" target="_blank">GitHub</a>
     <a href="mailto:e.space2027@yachaytech.edu.ec">Contact — e.space2027@yachaytech.edu.ec</a>
   </div>
@@ -1854,51 +1948,184 @@
 
 <script>
 // ── ASTRONOMICAL HERO ANIMATION ────────────────────────────────────────────
+// Motion is time-based (same speed at 60/120/144 Hz). Stars live in normalised 0–1 coordinates,
+// so they stay evenly spread after a resize, zoom or rotation. The loop pauses while the hero is
+// off-screen or the tab is hidden, and draws a single still frame for prefers-reduced-motion.
+// Extras: drifting nebula glows, a central star with planet trails, a moon and a ringed planet,
+// diffraction spikes on the brightest stars, and gentle depth parallax following the mouse.
 (function () {
+  // Title effects. Set any to false to switch it off; all false = the plain animation.
+  const FX = {
+    weave:      true,   // planets pass in front of the title on the near half of their orbits
+    zeroCentre: true,   // planets orbit the dot inside the "0" of 2027 (else the title centre)
+  };
+
   const canvas = document.getElementById('astrocanvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
+  const hero = canvas.parentElement;
+  let front = null, fctx = null;
+  if (FX.weave) {
+    front = document.createElement('canvas');
+    front.id = 'astrocanvas-front';
+    front.setAttribute('aria-hidden', 'true');
+    hero.appendChild(front);
+    fctx = front.getContext('2d');
+  }
+  let zero = null;   // { x, y, r } of the dot inside the "0", in device px (FX.zeroCentre)
+  let lastCentreCheck = 0;
+  let tbox = null;   // title box in device px: planets only pass in front of the title, not other text
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  let W, H, dpr;
+  let W = 0, H = 0, dpr = 1;
   let stars = [], shooters = [], orbits = [];
   const N_STARS = 230;
+  const FRAME = 1000 / 60;        // original tuning assumed 60 fps; dt is expressed in these units
+  const EDGE = 40;                // CSS px over which stars and lines fade out near the edges
+  const MIN_LINE = 1;             // device px; thinner lines shimmer as they drift
+  const MIN_STAR = 0.8;           // device px radius; ditto for the faintest stars
+  const PARALLAX = 14;            // CSS px shift of the nearest layer at the window edge
+  const nebula = document.createElement('canvas');
+  const nctx = nebula.getContext('2d');
 
   function resize() {
-    dpr = window.devicePixelRatio || 1;
-    W = canvas.width  = canvas.offsetWidth  * dpr;
-    H = canvas.height = canvas.offsetHeight * dpr;
+    dpr = Math.min(window.devicePixelRatio || 1, 2);   // cap: 3× phones gain nothing visible
+    const w = Math.round(canvas.offsetWidth * dpr);
+    const h = Math.round(canvas.offsetHeight * dpr);
+    if (w === W && h === H) return;                     // e.g. mobile URL-bar resizes
+    if (w < 2 || h < 2) return;                         // hidden or collapsed: keep the last size
+    W = canvas.width = w;
+    H = canvas.height = h;
+    if (front) { front.width = w; front.height = h; }
     buildOrbits();
+    buildNebula();
+    if (!running) frame(performance.now(), 0);          // keep a still frame on screen
   }
 
-  // ── Stars ──
+  // ── Stars ── (u, v in 0–1; sizes and drift in CSS px)
   function buildStars() {
     stars = [];
     for (let i = 0; i < N_STARS; i++) {
       const bright = Math.random() < 0.12;
       stars.push({
-        x:      Math.random() * W,
-        y:      Math.random() * H,
-        r:      (bright ? Math.random() * 1.4 + 1.0 : Math.random() * 0.9 + 0.3) * dpr,
+        u:      Math.random(),
+        v:      Math.random(),
+        r:      bright ? Math.random() * 1.4 + 1.0 : Math.random() * 0.9 + 0.3,
         alpha:  bright ? Math.random() * 0.28 + 0.20 : Math.random() * 0.14 + 0.05,
         phase:  Math.random() * Math.PI * 2,
         tspd:   Math.random() * 0.0014 + 0.0004,
-        dx:     (Math.random() - 0.5) * 0.035 * dpr,
-        dy:     (Math.random() - 0.5) * 0.022 * dpr,
+        dx:     (Math.random() - 0.5) * 0.035,
+        dy:     (Math.random() - 0.5) * 0.022,
+        z:      bright ? 0.7 + Math.random() * 0.3 : 0.15 + Math.random() * 0.55,   // parallax depth
         bright,
+        x: 0, y: 0, edge: 1,
       });
     }
   }
 
   // ── Orbital orrery (3 tilted ellipses with coloured planets) ──
+  // Centred on the "eSPACE 2027" title wherever the layout puts it; scaled down on narrow
+  // screens so the outer orbit stays inside the viewport.
+  const title = hero.querySelector('.hero-title-big');
   function buildOrbits() {
-    const cx   = W * 0.50;
-    const cy   = H * 0.36;
+    const ctr = orbitCentre();
+    const cx = ctr.cx, cy = ctr.cy;
+    zero = ctr.zero;
+    if (title) {
+      const t = title.getBoundingClientRect(), c = canvas.getBoundingClientRect();
+      tbox = { l: (t.left - c.left) * dpr, t: (t.top - c.top) * dpr, r: (t.right - c.left) * dpr, b: (t.bottom - c.top) * dpr };
+    }
+    const sc = Math.max(0.15, Math.min(1, (W / dpr - 24) / 424)) * dpr;   // never negative on tiny canvases
     const tilt = 0.26;
+    const prev = orbits.map(o => o.angle);
+    const moonAngle = orbits[0]?.moon?.angle || 0;
     orbits = [
-      { cx, cy, rx: 68*dpr, ry: 21*dpr, tilt, angle: 0.0, dA: 0.0092, r: 3.4*dpr, rgb: '5,80,160'   },  // ocean blue
-      { cx, cy, rx:128*dpr, ry: 40*dpr, tilt, angle: 2.2, dA: 0.0056, r: 2.7*dpr, rgb: '10,122,92'  },  // teal
-      { cx, cy, rx:192*dpr, ry: 62*dpr, tilt, angle: 4.7, dA: 0.0033, r: 2.1*dpr, rgb: '184,120,0'  },  // amber
+      { cx, cy, rx: 68*sc, ry: 21*sc, tilt, angle: 0.0, dA: 0.0092, r: 3.4*dpr, rgb: '5,80,160'   },  // ocean blue
+      { cx, cy, rx:128*sc, ry: 40*sc, tilt, angle: 2.2, dA: 0.0056, r: 2.7*dpr, rgb: '10,122,92'  },  // teal
+      { cx, cy, rx:192*sc, ry: 62*sc, tilt, angle: 4.7, dA: 0.0033, r: 2.1*dpr, rgb: '184,120,0'  },  // amber
+      // outer planets: slower further out (angular speed ∝ r^-1.5), varying sizes; may run off-screen on phones
+      { cx, cy, rx:265*sc, ry: 86*sc, tilt, angle: 1.1, dA: 0.0020, r: 4.2*dpr, rgb: '72,64,150'  },  // violet giant
+      { cx, cy, rx:340*sc, ry:110*sc, tilt, angle: 3.4, dA: 0.0014, r: 1.7*dpr, rgb: '30,110,170' },  // small sky blue
+      { cx, cy, rx:420*sc, ry:136*sc, tilt, angle: 5.6, dA: 0.0010, r: 3.4*dpr, rgb: '150,90,40'  },  // copper, ringed
+      { cx, cy, rx:505*sc, ry:164*sc, tilt, angle: 0.4, dA: 0.0008, r: 2.4*dpr, rgb: '70,95,115'  },  // slate
     ];
+    orbits[5].ring = true;
+    prev.forEach((a, i) => { orbits[i].angle = a; });   // planets keep their place across resizes
+    orbits[0].moon = { d: 11*dpr, angle: moonAngle, dA: 0.045, r: 1.3*dpr };
+    orbits[2].ring = true;
+  }
+
+  // ── Locate the dot inside the "0" of 2027: find the glyph's box with a Range, then render the
+  // glyph off-screen in the same font to measure the dot's exact centre and radius. Returns null
+  // (fall back to the title centre) if the font draws a plain zero.
+  let glyph = null, glyphKey = '';
+  function zeroGlyph(cs, fs) {
+    const font = `${cs.fontStyle} ${cs.fontWeight} ${fs}px ${cs.fontFamily}`;
+    const key = font + (document.fonts?.check(font) ? '' : ' (fallback)');   // re-measure once the web font arrives
+    if (key === glyphKey) return glyph;
+    glyphKey = key; glyph = null;
+    const S = Math.ceil(fs * 1.6), ox = Math.round(fs * 0.3), base = Math.round(fs * 1.2);
+    const m = document.createElement('canvas');
+    m.width = m.height = S;
+    const mc = m.getContext('2d', { willReadFrequently: true });
+    mc.font = font;
+    mc.fillText('0', ox, base);
+    const met = mc.measureText('0');
+    const px = mc.getImageData(0, 0, S, S).data;
+    const ink = (x, y) => px[(y * S + x) * 4 + 3] > 128;
+    let x0 = S, x1 = -1, y0 = S, y1 = -1;
+    for (let y = 0; y < S; y++) for (let x = 0; x < S; x++) if (ink(x, y)) {
+      if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y;
+    }
+    if (x1 < 0) return null;
+    const gx = Math.round((x0 + x1) / 2), gy = Math.round((y0 + y1) / 2);
+    if (!ink(gx, gy)) return null;                       // no dot in this font's zero
+    let r = 0;
+    while (gx + r + 1 < S && ink(gx + r + 1, gy)) r++;
+    glyph = { dx: (x0 + x1) / 2 - ox, dy: (y0 + y1) / 2 - base, r: r + 0.5, descent: met.fontBoundingBoxDescent };
+    return glyph;
+  }
+  function measureZero() {
+    if (!title) return null;
+    const node = [...title.childNodes].find(n => n.nodeType === 3 && n.textContent.includes('0'));
+    if (!node) return null;
+    const i = node.textContent.indexOf('0');
+    const range = document.createRange();
+    range.setStart(node, i); range.setEnd(node, i + 1);
+    const rb = range.getBoundingClientRect(), cb = canvas.getBoundingClientRect();
+    const cs = getComputedStyle(title);
+    const g = zeroGlyph(cs, parseFloat(cs.fontSize));
+    if (!g) return null;
+    const baseline = rb.bottom - g.descent;                    // Range box = font content area
+    return { x: (rb.left + g.dx - cb.left) * dpr, y: (baseline + g.dy - cb.top) * dpr, r: g.r * dpr };
+  }
+
+  // Where the orbits should be centred right now
+  function orbitCentre() {
+    const z = FX.zeroCentre ? measureZero() : null;
+    if (z) return { cx: z.x, cy: z.y, zero: z };
+    if (title) {
+      const t = title.getBoundingClientRect(), c = canvas.getBoundingClientRect();
+      return { cx: (t.left + t.width / 2 - c.left) * dpr, cy: (t.top + t.height / 2 - c.top) * dpr, zero: null };
+    }
+    return { cx: W * 0.50, cy: H * 0.36, zero: null };
+  }
+
+  // ── Nebula glows: rendered once per resize, then drawn with a slow drift ──
+  function buildNebula() {
+    nebula.width = W; nebula.height = H;
+    const R = Math.max(W, H);
+    [[0.18, 0.30, 0.42, '5,80,160', 0.075],
+     [0.84, 0.62, 0.38, '10,122,92', 0.055],
+     [0.66, 0.12, 0.30, '184,120,0', 0.045],
+     [0.38, 0.85, 0.34, '5,80,160', 0.045]].forEach(([x, y, r, rgb, a]) => {
+      const g = nctx.createRadialGradient(x * W, y * H, 0, x * W, y * H, r * R);
+      g.addColorStop(0, `rgba(${rgb},${a})`);
+      g.addColorStop(0.5, `rgba(${rgb},${a * 0.4})`);
+      g.addColorStop(1, `rgba(${rgb},0)`);
+      nctx.fillStyle = g;
+      nctx.fillRect(0, 0, W, H);
+    });
   }
 
   // ── Planet position on tilted ellipse ──
@@ -1909,6 +2136,62 @@
       x: o.cx + ex * Math.cos(o.tilt) - ey * Math.sin(o.tilt),
       y: o.cy + ex * Math.sin(o.tilt) + ey * Math.cos(o.tilt),
     };
+  }
+
+  // ── Tilted planetary ring (half-ellipse, so it can pass behind and in front) ──
+  function drawRing(c, o, p, a0, a1) {
+    c.save();
+    c.translate(p.x, p.y);
+    c.rotate(-0.35);
+    c.strokeStyle = `rgba(${o.rgb},0.55)`;
+    c.lineWidth = Math.max(0.8 * dpr, MIN_LINE);
+    c.beginPath();
+    c.ellipse(0, 0, o.r * 2.7, o.r * 0.85, 0, a0, a1);
+    c.stroke();
+    c.restore();
+  }
+
+  // Share of a body drawn on the front layer: 0 on the far half of the orbit, 1 on the near half,
+  // cross-faded around the turning points so nothing pops between layers.
+  // Also fades to 0 just outside the title box, so planets stay behind the subtitle and other text.
+  function nearness(angle, pt) {
+    if (!fctx) return 0;
+    const t = Math.min(Math.max((Math.sin(angle) + 0.18) / 0.36, 0), 1);
+    let w = t * t * (3 - 2 * t);
+    if (tbox && pt) {
+      const dx = Math.max(tbox.l - pt.x, 0, pt.x - tbox.r), dy = Math.max(tbox.t - pt.y, 0, pt.y - tbox.b);
+      const u = Math.min(Math.max(1 - Math.hypot(dx, dy) / (24 * dpr), 0), 1);
+      w *= u * u * (3 - 2 * u);
+    }
+    return w;
+  }
+
+  // Planet body (glow, ring, dot, moon) onto context c at opacity a
+  function drawPlanet(c, o, p, a) {
+    if (a <= 0.003) return;
+    c.globalAlpha = a;
+    const g = c.createRadialGradient(p.x, p.y, 0, p.x, p.y, o.r * 5.5);
+    g.addColorStop(0, `rgba(${o.rgb},0.32)`);
+    g.addColorStop(1, `rgba(${o.rgb},0)`);
+    c.fillStyle = g;
+    c.beginPath();
+    c.arc(p.x, p.y, o.r * 5.5, 0, Math.PI * 2);
+    c.fill();
+    if (o.ring) drawRing(c, o, p, Math.PI, Math.PI * 2);   // back half of the ring
+    c.fillStyle = `rgba(${o.rgb},0.80)`;
+    c.beginPath();
+    c.arc(p.x, p.y, o.r, 0, Math.PI * 2);
+    c.fill();
+    if (o.ring) drawRing(c, o, p, 0, Math.PI);             // front half
+    if (o.moon) {
+      const mx = p.x + Math.cos(o.moon.angle) * o.moon.d;
+      const my = p.y + Math.sin(o.moon.angle) * o.moon.d * 0.45;
+      c.fillStyle = 'rgba(5,20,60,0.45)';
+      c.beginPath();
+      c.arc(mx, my, Math.max(o.moon.r, MIN_STAR), 0, Math.PI * 2);
+      c.fill();
+    }
+    c.globalAlpha = 1;
   }
 
   // ── Spawn a shooting star ──
@@ -1926,37 +2209,103 @@
     });
   }
 
-  // ── Draw frame ──
-  function draw(t) {
+  // First shooting star after 1 s, then one every 5.8 s (at most 2 at once). The clock only
+  // advances while the animation runs, so returning to the tab never fires a burst.
+  let shotClock = 0, nextShot = 1000;
+
+  // ── Draw frame ── (now: ms timestamp; dt: elapsed ms, 0 for a still frame)
+  function frame(now, dt) {
+    if (W < 2 || H < 2) return;
+    const k = dt / FRAME;
+    const cssW = W / dpr, cssH = H / dpr;
+
+    // Re-centre twice a second if the title moved (late web-font load, layout shifts)
+    if (now - lastCentreCheck > 500) {
+      lastCentreCheck = now;
+      const c = orbitCentre(), o = orbits[0];
+      if (o && (Math.abs(c.cx - o.cx) > 0.5 || Math.abs(c.cy - o.cy) > 0.5 || !!c.zero !== !!zero)) buildOrbits();
+    }
     ctx.clearRect(0, 0, W, H);
 
-    // 1. Constellation lines
+    // Ease the parallax offset towards the pointer
+    const ease = 1 - Math.pow(0.94, k);
+    par.x += (par.tx - par.x) * ease;
+    par.y += (par.ty - par.y) * ease;
+    const px = par.x * PARALLAX * dpr, py = par.y * PARALLAX * dpr;
+
+    // Nebula glows (far layer: slow drift + little parallax)
+    ctx.drawImage(nebula,
+      Math.sin(now * 0.00004) * 18 * dpr + px * 0.15,
+      Math.cos(now * 0.00003) * 12 * dpr + py * 0.15);
+
+    // 0. Move stars; fade them near the edges so wrapping around is invisible
+    stars.forEach(s => {
+      s.u += s.dx * k / cssW;  s.v += s.dy * k / cssH;
+      s.u -= Math.floor(s.u);  s.v -= Math.floor(s.v);
+      s.x = s.u * W + px * s.z;  s.y = s.v * H + py * s.z;
+      const d = Math.min(s.u * cssW, (1 - s.u) * cssW, s.v * cssH, (1 - s.v) * cssH);
+      s.edge = Math.min(d / EDGE, 1);
+    });
+
+    // 1. Constellation lines (thickness floored; alpha scaled down to keep the same weight)
     const maxD = 88 * dpr;
     const maxD2 = maxD * maxD;
+    const lw0 = 0.45 * dpr;
+    const lw = Math.max(lw0, MIN_LINE);
+    const lineScale = lw0 / lw;
+    ctx.lineWidth = lw;
     for (let i = 0; i < stars.length; i++) {
+      const si = stars[i];
+      if (si.edge === 0) continue;
       for (let j = i + 1; j < stars.length; j++) {
-        const dx = stars[i].x - stars[j].x;
-        const dy = stars[i].y - stars[j].y;
+        const sj = stars[j];
+        const dx = si.x - sj.x;
+        const dy = si.y - sj.y;
         const d2 = dx * dx + dy * dy;
         if (d2 < maxD2) {
-          const a = (1 - Math.sqrt(d2) / maxD) * 0.052;
+          const a = (1 - Math.sqrt(d2) / maxD) * 0.052 * lineScale * Math.min(si.edge, sj.edge);
+          if (a < 0.002) continue;
           ctx.strokeStyle = `rgba(5,20,60,${a})`;
-          ctx.lineWidth   = 0.45 * dpr;
           ctx.beginPath();
-          ctx.moveTo(stars[i].x, stars[i].y);
-          ctx.lineTo(stars[j].x, stars[j].y);
+          ctx.moveTo(si.x, si.y);
+          ctx.lineTo(sj.x, sj.y);
           ctx.stroke();
         }
       }
     }
 
-    // 2. Orbit rings (dashed ellipses)
+    // Orrery sits on a middle parallax layer (on both canvases when FX.weave is on)
+    // (no parallax when anchored to the "0", or the orbits would drift off the dot)
+    const op = zero ? 0 : 0.5;
+    if (fctx) { fctx.clearRect(0, 0, W, H); fctx.save(); fctx.translate(px * op, py * op); }
+    ctx.save();
+    ctx.translate(px * op, py * op);
+
+    // Central star: soft golden glow with a slow pulse (not drawn when the "0" is the centre)
+    if (!zero) {
+      const o = orbits[0];
+      const pulse = 0.85 + 0.15 * Math.sin(now * 0.0012);
+      const sg = ctx.createRadialGradient(o.cx, o.cy, 0, o.cx, o.cy, 34 * dpr);
+      sg.addColorStop(0, `rgba(240,190,60,${0.30 * pulse})`);
+      sg.addColorStop(0.35, `rgba(210,158,20,${0.12 * pulse})`);
+      sg.addColorStop(1, 'rgba(184,120,0,0)');
+      ctx.fillStyle = sg;
+      ctx.beginPath();
+      ctx.arc(o.cx, o.cy, 34 * dpr, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = `rgba(214,150,20,${0.55 * pulse})`;
+      ctx.beginPath();
+      ctx.arc(o.cx, o.cy, 2.6 * dpr, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // 2. Orbit rings (dashed ellipses, always behind the title)
     orbits.forEach(o => {
       ctx.save();
       ctx.translate(o.cx, o.cy);
       ctx.rotate(o.tilt);
       ctx.strokeStyle = 'rgba(5,20,60,0.07)';
-      ctx.lineWidth   = 0.7 * dpr;
+      ctx.lineWidth   = Math.max(0.7 * dpr, MIN_LINE);
       ctx.setLineDash([3 * dpr, 7 * dpr]);
       ctx.beginPath();
       ctx.ellipse(0, 0, o.rx, o.ry, 0, 0, Math.PI * 2);
@@ -1965,52 +2314,90 @@
       ctx.restore();
     });
 
-    // 3. Planets
+    // 3. Planets with fading trails; near-side parts go on the front layer
     orbits.forEach(o => {
-      o.angle += o.dA;
+      o.angle += o.dA * k;
+      if (o.moon) o.moon.angle += o.moon.dA * k;
       const p = planetPos(o);
 
-      // glow
-      const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, o.r * 5.5);
-      g.addColorStop(0, `rgba(${o.rgb},0.32)`);
-      g.addColorStop(1, `rgba(${o.rgb},0)`);
-      ctx.fillStyle = g;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, o.r * 5.5, 0, Math.PI * 2);
-      ctx.fill();
+      const TRAIL = 22, span = 0.9 * Math.min(1, orbits[2].rx / o.rx);
+      let prevPt = p;
+      for (let i = 1; i <= TRAIL; i++) {
+        const ang = o.angle - span * i / TRAIL;
+        const q = planetPos({ ...o, angle: ang });
+        const f = 1 - i / TRAIL;
+        const nf = nearness(ang + span / TRAIL / 2, q);
+        [[ctx, 1 - nf], [fctx, nf]].forEach(([c, w]) => {
+          if (!c || w <= 0.003) return;
+          c.lineCap = 'butt';   // round caps overlap between segments and look beaded
+          c.strokeStyle = `rgba(${o.rgb},${0.30 * f * f * w})`;
+          c.lineWidth = Math.max(o.r * 0.9 * f, MIN_LINE * 0.5);
+          c.beginPath();
+          c.moveTo(prevPt.x, prevPt.y);
+          c.lineTo(q.x, q.y);
+          c.stroke();
+        });
+        prevPt = q;
+      }
 
-      // dot
-      ctx.fillStyle = `rgba(${o.rgb},0.80)`;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, o.r, 0, Math.PI * 2);
-      ctx.fill();
+      const nf = nearness(o.angle, p);
+      drawPlanet(ctx, o, p, 1 - nf);
+      if (fctx) drawPlanet(fctx, o, p, nf);
     });
+    ctx.restore();   // end of orrery parallax layer
+    if (fctx) fctx.restore();
 
-    // 4. Stars — drift + twinkle
+    // 4. Stars — twinkle (radius floored; alpha scaled by area to keep the same weight)
     stars.forEach(s => {
-      s.x += s.dx; s.y += s.dy;
-      if (s.x < -2) s.x = W + 2;  if (s.x > W + 2) s.x = -2;
-      if (s.y < -2) s.y = H + 2;  if (s.y > H + 2) s.y = -2;
-
-      const tw = 0.72 + 0.28 * Math.sin(t * s.tspd * 1000 + s.phase);
-      const a  = s.alpha * tw;
+      const tw = 0.72 + 0.28 * Math.sin(now * s.tspd + s.phase);
+      const r0 = s.r * dpr;
+      const r  = Math.max(r0, MIN_STAR);
+      const a  = s.alpha * tw * s.edge * (r0 * r0) / (r * r);
+      if (a <= 0) return;
 
       if (s.bright) {
-        const g2 = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.r * 5.5);
+        const g2 = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, r0 * 5.5);
         g2.addColorStop(0, `rgba(5,20,60,${a * 0.26})`);
         g2.addColorStop(1, `rgba(5,20,60,0)`);
         ctx.fillStyle = g2;
         ctx.beginPath();
-        ctx.arc(s.x, s.y, s.r * 5.5, 0, Math.PI * 2);
+        ctx.arc(s.x, s.y, r0 * 5.5, 0, Math.PI * 2);
         ctx.fill();
       }
       ctx.fillStyle = `rgba(5,20,60,${a})`;
       ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.arc(s.x, s.y, r, 0, Math.PI * 2);
       ctx.fill();
+
+      // diffraction spikes on the brightest stars, flaring as they twinkle
+      if (s.bright && s.r > 1.7) {
+        const L = r0 * (4 + 4 * tw);
+        const sa = a * 0.55 * tw;
+        ctx.lineWidth = MIN_LINE;
+        ctx.lineCap = 'round';
+        [[1, 0], [0, 1]].forEach(([ux, uy]) => {
+          const sg = ctx.createLinearGradient(s.x - ux * L, s.y - uy * L, s.x + ux * L, s.y + uy * L);
+          sg.addColorStop(0, 'rgba(5,20,60,0)');
+          sg.addColorStop(0.5, `rgba(5,20,60,${sa})`);
+          sg.addColorStop(1, 'rgba(5,20,60,0)');
+          ctx.strokeStyle = sg;
+          ctx.beginPath();
+          ctx.moveTo(s.x - ux * L, s.y - uy * L);
+          ctx.lineTo(s.x + ux * L, s.y + uy * L);
+          ctx.stroke();
+        });
+      }
     });
 
     // 5. Shooting stars
+    if (dt > 0) {
+      shotClock += dt;
+      if (shotClock >= nextShot) {
+        if (shooters.length < 2) spawnShooter();
+        shotClock = 0;
+        nextShot = 5800;
+      }
+    }
     shooters = shooters.filter(s => s.life < s.max);
     shooters.forEach(s => {
       const prog   = s.life / s.max;
@@ -2038,23 +2425,61 @@
       ctx.lineTo(s.x, s.y);
       ctx.stroke();
 
-      s.x += s.vx; s.y += s.vy; s.life++;
-    });
+      // glowing head
+      const hg = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, 7 * dpr);
+      hg.addColorStop(0, `rgba(255,214,110,${alpha * 0.9})`);
+      hg.addColorStop(1, 'rgba(240,190,60,0)');
+      ctx.fillStyle = hg;
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, 7 * dpr, 0, Math.PI * 2);
+      ctx.fill();
 
-    requestAnimationFrame(draw);
+      s.x += s.vx * k; s.y += s.vy * k; s.life += k;
+    });
+  }
+
+  // ── Mouse parallax (pointer position as -1…1 from the window centre; mouse only) ──
+  const par = { x: 0, y: 0, tx: 0, ty: 0 };
+  window.addEventListener('pointermove', e => {
+    if (e.pointerType !== 'mouse' || reduceMotion.matches) return;
+    par.tx = (e.clientX / innerWidth) * 2 - 1;
+    par.ty = (e.clientY / innerHeight) * 2 - 1;
+  }, { passive: true });
+
+  // ── Loop control ──
+  let running = false, rafId = 0, last = 0, heroVisible = true;
+
+  function loop(now) {
+    const dt = last ? Math.min(now - last, 50) : FRAME;   // clamp long gaps (tab switches, jank)
+    last = now;
+    rafId = requestAnimationFrame(loop);   // schedule first, so an error in one frame can't stop the animation
+    frame(now, dt);
+  }
+
+  function update() {
+    const shouldRun = heroVisible && !document.hidden && !reduceMotion.matches;
+    if (shouldRun && !running) {
+      running = true; last = 0;
+      rafId = requestAnimationFrame(loop);
+    } else if (!shouldRun && running) {
+      running = false;
+      cancelAnimationFrame(rafId);
+    }
+    if (reduceMotion.matches) { shooters = []; frame(performance.now(), 0); }
   }
 
   // ── Boot ──
-  function init() {
-    resize();
-    buildStars();
-    setTimeout(spawnShooter, 1000);
-    setInterval(() => { if (shooters.length < 2) spawnShooter(); }, 5800);
-  }
-
+  buildStars();
+  resize();
+  document.fonts?.ready.then(() => { buildOrbits(); if (!running) frame(performance.now(), 0); });
   window.addEventListener('resize', resize);
-  init();
-  requestAnimationFrame(draw);
+  document.addEventListener('visibilitychange', update);
+  reduceMotion.addEventListener?.('change', update);
+  new IntersectionObserver(entries => {
+    heroVisible = entries[0].isIntersecting;
+    update();
+  }).observe(hero);
+  update();
 })();
 
 // ── SCROLL REVEAL ──
@@ -2062,6 +2487,101 @@ const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
 }, { threshold: 0.07 });
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// Speaker bios: clamp to a few lines with a "Read more" toggle. While a card is open, the other
+// cards in its row keep their current height instead of stretching to match it.
+(() => {
+  const grid = document.querySelector('.speakers-grid');
+  if (!grid) return;
+  const cards = [...grid.querySelectorAll('.speaker-card')];
+  const rowOf = card => cards.filter(c => c.offsetTop === card.offsetTop);
+  const freeze = (c, h) => { c.style.height = h + 'px'; c.style.alignSelf = 'start'; };
+  const unfreeze = c => { c.style.height = ''; c.style.alignSelf = ''; };
+
+  function setup() {
+    cards.forEach(card => {
+      unfreeze(card);
+      card.classList.remove('bio-open');
+      card.querySelector('.speaker-more')?.remove();
+      const bio = card.querySelector('.speaker-bio');
+      card.classList.add('bio-clamped');
+      if (bio.scrollHeight <= bio.clientHeight + 1) { card.classList.remove('bio-clamped'); return; }
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'speaker-more';
+      btn.textContent = 'Read more ↓';
+      btn.setAttribute('aria-expanded', 'false');
+      bio.after(btn);
+      btn.addEventListener('click', () => toggle(card, btn));
+    });
+  }
+
+  function toggle(card, btn) {
+    const open = !card.classList.contains('bio-open');
+    const row = rowOf(card);
+    if (open) {
+      if (!row.some(c => c.classList.contains('bio-open'))) {
+        const h = card.offsetHeight;
+        row.forEach(c => { c.dataset.rowH = h; if (c !== card) freeze(c, h); });
+      }
+      unfreeze(card);
+      card.style.alignSelf = 'start';
+    } else if (row.some(c => c !== card && c.classList.contains('bio-open'))) {
+      freeze(card, card.dataset.rowH);
+    } else {
+      row.forEach(unfreeze);
+    }
+    card.classList.toggle('bio-open', open);
+    card.classList.toggle('bio-clamped', !open);
+    btn.textContent = open ? 'Show less ↑' : 'Read more ↓';
+    btn.setAttribute('aria-expanded', String(open));
+  }
+
+  setup();
+  let lastW = innerWidth, t;
+  addEventListener('resize', () => {
+    if (innerWidth === lastW) return;   // ignore mobile URL-bar resizes
+    lastW = innerWidth;
+    clearTimeout(t); t = setTimeout(setup, 150);
+  });
+  document.fonts?.ready.then(setup);
+})();
+
+// Flyer share: system share sheet with the image where supported, else the link, else copy the link.
+// The image is fetched ahead of time so share() still runs within the click's user activation (Safari).
+(() => {
+  const btn = document.getElementById('flyer-share');
+  if (!btn) return;
+  const label = btn.textContent;
+  const url = location.origin + location.pathname + '#flyer';
+  const title = 'eSPACE 2027 conference flyer';
+  const text = 'eSPACE 2027 · 4–8 January 2027 · Ibarra, Ecuador · ' + url;
+  let file = null;
+  if (navigator.canShare) {
+    new IntersectionObserver((entries, obs) => {
+      if (!entries[0].isIntersecting) return;
+      obs.disconnect();
+      fetch(btn.dataset.file).then(r => r.blob()).then(b => {
+        const f = new File([b], 'eSPACE2027_flyer.png', { type: b.type || 'image/png' });
+        if (navigator.canShare({ files: [f] })) file = f;
+      }).catch(() => {});
+    }, { rootMargin: '400px' }).observe(btn);
+  }
+  const copyLink = async () => {
+    try { await navigator.clipboard.writeText(url); btn.textContent = 'Link copied ✓'; }
+    catch { btn.textContent = 'Copy failed'; }
+    setTimeout(() => { btn.textContent = label; }, 2000);
+  };
+  btn.addEventListener('click', async () => {
+    try {
+      if (file) await navigator.share({ files: [file], title, text });
+      else if (navigator.share) await navigator.share({ title, text, url });
+      else await copyLink();
+    } catch (e) {
+      if (e.name !== 'AbortError') copyLink();
+    }
+  });
+})();
 </script>
 </body>
 </html>
