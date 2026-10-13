@@ -99,7 +99,16 @@
     transition: color 0.2s;
   }
   .nav-links a:hover { color: var(--ink); }
-  @media (max-width: 940px) { .nav-links { display: none; } }
+  .nav-links { align-items: center; }
+  .nav-links a, .nav-logo { white-space: nowrap; }
+  @media (max-width: 1400px) { .nav-links { gap: 0.85rem; } }
+  @media (max-width: 1200px) { .nav-links { gap: 0.6rem; } .nav-links a { font-size: 11px; letter-spacing: 0; } nav { padding: 0 3vw; } }
+  .nav-links a.nav-cta {
+    color: #fff; background: var(--accent); font-weight: 700;
+    padding: 0.3rem 0.8rem; border-radius: 100px; white-space: nowrap;
+  }
+  .nav-links a.nav-cta:hover { color: #fff; background: var(--accent2); }
+  @media (max-width: 999px) { .nav-links { display: none; } }
 
   /* ── HERO ── */
   .hero {
@@ -1021,9 +1030,9 @@
     <li><a href="#about">About</a></li>
     <li><a href="#speakers">Speakers</a></li>
     <li><a href="#topics">Topics</a></li>
-    <li><a href="#contributions">Contributions</a></li>
     <li><a href="#programme">Programme</a></li>
-    <li><a href="#registration">Registration</a></li>
+    <li><a class="nav-cta" href="#contributions">Submit your work</a></li>
+    <li><a class="nav-cta" href="#registration">Registration</a></li>
     <li><a href="#practical">Practical info</a></li>
     <li><a href="#conduct">Conduct</a></li>
     <li><a href="#sponsors-join">Sponsors</a></li>
@@ -1172,6 +1181,42 @@
     </div>
 
     <div class="speaker-card">
+    <div class="speaker-photo"><img src="astrosciences/people/fpucci.jpg" alt="Francesco Pucci" style="object-position: center center;"/></div>
+    <div class="speaker-body">
+      <h3 class="speaker-name">Francesco Pucci</h3>
+      <p class="speaker-role">Researcher, Institute for Plasma Science and Technology (ISTP-CNR), Bari, Italy</p>
+      <p class="speaker-bio">Francesco Pucci is a permanent researcher at the Institute for Plasma Science and Technology of the Italian National Research Council (CNR) in Bari. He obtained his PhD in Physics of Complex Systems from the University of Calabria in 2015 and was a postdoctoral researcher at the Centre for Mathematical Plasma Astrophysics of KU Leuven, later as an FWO postdoctoral fellow. He studies fundamental plasma processes in astrophysics through numerical simulations, including magnetic reconnection, turbulence, dynamo action and particle diffusion, with applications to the solar corona, the solar wind, Earth's magnetosphere and the interstellar medium.</p>
+      <div class="speaker-topics">
+        <span class="stopic">Space Physics</span>
+        <span class="stopic">Plasma Physics</span>
+      </div>
+      <div class="speaker-links">
+        <a class="speaker-link" href="https://www.istp.cnr.it/?p=5991" target="_blank" rel="noopener">ISTP-CNR profile →</a>
+        <a class="speaker-link" href="https://scholar.google.com/citations?user=Re_H0rsAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar →</a>
+      </div>
+    </div>
+    </div>
+
+    <div class="speaker-card">
+    <div class="speaker-photo"><img src="astrosciences/people/yrodriguez.png" alt="Yeinzon Rodriguez Garcia" style="object-position: center top;"/></div>
+    <div class="speaker-body">
+      <h3 class="speaker-name">Yeinzon Rodriguez Garcia</h3>
+      <p class="speaker-role">Full Professor, Universidad Industrial de Santander, Colombia</p>
+      <p class="speaker-bio">Yeinzon Rodriguez Garcia is a Professor at the Universidad Industrial de Santander (Bucaramanga). His research focuses on early-universe cosmology, with contributions to inflationary theory, primordial non-Gaussianity, statistical anisotropy of curvature perturbations, and modified gravity. He serves as an Associate Editor in Astronomy for Scientific Reports (Nature Portfolio).</p>
+      <div class="speaker-topics">
+        <span class="stopic">Cosmology</span>
+        <span class="stopic">Inflation</span>
+        <span class="stopic">Non-Gaussianity</span>
+        <span class="stopic">Modified Gravity</span>
+        <span class="stopic">Early Universe</span>
+      </div>
+      <div class="speaker-links">
+        <a class="speaker-link" href="https://scholar.google.com/citations?user=5gEif2UAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar →</a>
+      </div>
+    </div>
+    </div>
+
+    <div class="speaker-card">
     <div class="speaker-photo"><img src="astrosciences/people/jdiegosoler.png" alt="Juan Diego Soler"/></div>
     <div class="speaker-body">
       <h3 class="speaker-name">Juan Diego Soler</h3>
@@ -1208,26 +1253,6 @@
       </div>
     </div>
     </div>
-
-    <div class="speaker-card">
-    <div class="speaker-photo"><img src="astrosciences/people/yrodriguez.png" alt="Yeinzon Rodriguez Garcia" style="object-position: center top;"/></div>
-    <div class="speaker-body">
-      <h3 class="speaker-name">Yeinzon Rodriguez Garcia</h3>
-      <p class="speaker-role">Full Professor, Universidad Industrial de Santander, Colombia</p>
-      <p class="speaker-bio">Yeinzon Rodriguez Garcia is a Professor at the Universidad Industrial de Santander (Bucaramanga). His research focuses on early-universe cosmology, with contributions to inflationary theory, primordial non-Gaussianity, statistical anisotropy of curvature perturbations, and modified gravity. He serves as an Associate Editor in Astronomy for Scientific Reports (Nature Portfolio).</p>
-      <div class="speaker-topics">
-        <span class="stopic">Cosmology</span>
-        <span class="stopic">Inflation</span>
-        <span class="stopic">Non-Gaussianity</span>
-        <span class="stopic">Modified Gravity</span>
-        <span class="stopic">Early Universe</span>
-      </div>
-      <div class="speaker-links">
-        <a class="speaker-link" href="https://scholar.google.com/citations?user=5gEif2UAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar →</a>
-      </div>
-    </div>
-    </div>
-
   </div>
 </section>
 
@@ -1282,6 +1307,121 @@
         <p>Remote sensing, instrumentation, Dual-Use Space &amp; Naval Materials</p>
       </div>
     </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- PRELIMINARY PROGRAMME -->
+<section id="programme" class="reveal">
+  <p class="section-label">Schedule</p>
+  <h2>Preliminary programme</h2>
+  <p>The conference runs Monday 4 – Friday 8 January 2027, with arrival on Sunday 3 January and a full-day excursion on Saturday 9 January. The schedule below is indicative and subject to adjustment.</p>
+
+  <div class="sched-wrap">
+    <table class="sched-table">
+      <thead>
+        <tr>
+          <th class="sched-th-time">Hour</th>
+          <th class="sched-th-day"><span class="sched-date">Sunday</span><span class="sched-datenum">3 Jan</span></th>
+          <th class="sched-th-day"><span class="sched-date">Monday</span><span class="sched-datenum">4 Jan</span></th>
+          <th class="sched-th-day"><span class="sched-date">Tuesday</span><span class="sched-datenum">5 Jan</span></th>
+          <th class="sched-th-day"><span class="sched-date">Wednesday</span><span class="sched-datenum">6 Jan</span></th>
+          <th class="sched-th-day"><span class="sched-date">Thursday</span><span class="sched-datenum">7 Jan</span></th>
+          <th class="sched-th-day"><span class="sched-date">Friday</span><span class="sched-datenum">8 Jan</span></th>
+          <th class="sched-th-day"><span class="sched-date">Saturday</span><span class="sched-datenum">9 Jan</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 07h00–08h30 -->
+        <tr>
+          <td class="sched-time">07h00–08h30</td>
+          <td class="sched-empty"></td>
+          <td class="sched-meal" colspan="5">Breakfast</td>
+          <td class="sched-meal sched-depart">Breakfast &amp; Departure</td>
+        </tr>
+        <!-- 08h30–10h00 -->
+        <tr>
+          <td class="sched-time">08h30–10h00</td>
+          <td class="sched-empty"></td>
+          <td class="sched-session sched-sw">Welcome Ceremony &amp; Space weather &amp; climate</td>
+          <td class="sched-session sched-ap">Astrophysics &amp; plasma modelling</td>
+          <td class="sched-session sched-ap">Astrophysics &amp; plasma modelling</td>
+          <td class="sched-session sched-ap">Astrophysics &amp; plasma modelling</td>
+          <td class="sched-session sched-cd">Converging &amp; interdisciplinary fields</td>
+          <td class="sched-excursion" rowspan="7" style="opacity:0.85;">Optional Full-day Excursion</td>
+        </tr>
+        <!-- 10h00–10h30 -->
+        <tr>
+          <td class="sched-time">10h00–10h30</td>
+          <td class="sched-empty"></td>
+          <td class="sched-break" colspan="5">Coffee Break</td>
+        </tr>
+        <!-- 10h30–12h30 -->
+        <tr>
+          <td class="sched-time">10h30–12h30</td>
+          <td class="sched-empty"></td>
+          <td class="sched-session sched-sw">Space weather &amp; climate</td>
+          <td class="sched-session sched-ap">Astrophysics &amp; plasma modelling</td>
+          <td class="sched-session sched-ap">Astrophysics &amp; plasma modelling</td>
+          <td class="sched-session sched-ap">Astrophysics &amp; plasma modelling</td>
+          <td class="sched-session sched-tp">Theoretical physics &amp; cosmology</td>
+        </tr>
+        <!-- 12h30–14h00 -->
+        <tr>
+          <td class="sched-time">12h30–14h00</td>
+          <td class="sched-empty"></td>
+          <td class="sched-meal" colspan="5">Lunch</td>
+        </tr>
+        <!-- 14h00–15h30 -->
+        <tr>
+          <td class="sched-time">14h00–15h30</td>
+          <td class="sched-empty"></td>
+          <td class="sched-session sched-me">Materials in extreme environments</td>
+          <td class="sched-session sched-ap">Astrophysics &amp; plasma modelling</td>
+          <td class="sched-excursion" rowspan="3">Excursion</td>
+          <td class="sched-session sched-cp">Computational physics &amp; AI</td>
+          <td class="sched-session sched-tp">Theoretical physics &amp; cosmology</td>
+        </tr>
+        <!-- 15h30–16h00 -->
+        <tr>
+          <td class="sched-time">15h30–16h00</td>
+          <td class="sched-empty"></td>
+          <td class="sched-break" colspan="2">Coffee Break</td>
+          <td class="sched-break" colspan="2">Coffee Break</td>
+        </tr>
+        <!-- 16h00–17h30 -->
+        <tr>
+          <td class="sched-time">16h00–17h30</td>
+          <td class="sched-empty"></td>
+          <td class="sched-session sched-me">Materials in extreme environments</td>
+          <td class="sched-session sched-ap">Astrophysics &amp; plasma modelling</td>
+          <td class="sched-session sched-cp">Computational physics &amp; AI</td>
+          <td class="sched-session sched-close">Wrap-up discussion &amp; Closing Ceremony</td>
+        </tr>
+        <!-- 17h00–20h00 -->
+        <tr>
+          <td class="sched-time">17h00–20h00</td>
+          <td class="sched-meal sched-arrival">Arrival &amp; Dinner</td>
+          <td class="sched-meal">Dinner</td>
+          <td class="sched-gala">★ Conference Dinner</td>
+          <td class="sched-meal">Dinner</td>
+          <td class="sched-gala" style="background:linear-gradient(135deg,#0a3d2e 0%,#0e5c42 100%);color:#a8f0d0;">🎙 Public Outreach Talk &amp; Dinner</td>
+          <td class="sched-meal">Dinner</td>
+          <td class="sched-empty"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Legend -->
+  <div class="sched-legend">
+    <span class="sleg sleg-sw">Space weather &amp; climate</span>
+    <span class="sleg sleg-ap">Astrophysics &amp; plasma modelling</span>
+    <span class="sleg sleg-me">Materials in extreme environments</span>
+    <span class="sleg sleg-cp">Computational physics &amp; AI</span>
+    <span class="sleg sleg-tp">Theoretical physics &amp; cosmology</span>
+    <span class="sleg sleg-cd">Converging &amp; interdisciplinary fields</span>
   </div>
 </section>
 
@@ -1418,121 +1558,6 @@
            alt="Morressier" style="height:32px; display:block;"/>
       <span style="font-size:1.1rem; font-weight:600; letter-spacing:-0.01em;">Submit your abstract via Morressier →</span>
     </a>
-  </div>
-</section>
-
-<hr class="divider"/>
-
-<!-- PRELIMINARY PROGRAMME -->
-<section id="programme" class="reveal">
-  <p class="section-label">Schedule</p>
-  <h2>Preliminary programme</h2>
-  <p>The conference runs Monday 4 – Friday 8 January 2027, with arrival on Sunday 3 January and a full-day excursion on Saturday 9 January. The schedule below is indicative and subject to adjustment.</p>
-
-  <div class="sched-wrap">
-    <table class="sched-table">
-      <thead>
-        <tr>
-          <th class="sched-th-time">Hour</th>
-          <th class="sched-th-day"><span class="sched-date">Sunday</span><span class="sched-datenum">3 Jan</span></th>
-          <th class="sched-th-day"><span class="sched-date">Monday</span><span class="sched-datenum">4 Jan</span></th>
-          <th class="sched-th-day"><span class="sched-date">Tuesday</span><span class="sched-datenum">5 Jan</span></th>
-          <th class="sched-th-day"><span class="sched-date">Wednesday</span><span class="sched-datenum">6 Jan</span></th>
-          <th class="sched-th-day"><span class="sched-date">Thursday</span><span class="sched-datenum">7 Jan</span></th>
-          <th class="sched-th-day"><span class="sched-date">Friday</span><span class="sched-datenum">8 Jan</span></th>
-          <th class="sched-th-day"><span class="sched-date">Saturday</span><span class="sched-datenum">9 Jan</span></th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- 07h00–08h30 -->
-        <tr>
-          <td class="sched-time">07h00–08h30</td>
-          <td class="sched-empty"></td>
-          <td class="sched-meal" colspan="5">Breakfast</td>
-          <td class="sched-meal sched-depart">Breakfast &amp; Departure</td>
-        </tr>
-        <!-- 08h30–10h00 -->
-        <tr>
-          <td class="sched-time">08h30–10h00</td>
-          <td class="sched-empty"></td>
-          <td class="sched-session sched-sw">Welcome Ceremony &amp; Space weather &amp; climate</td>
-          <td class="sched-session sched-ap">Astrophysics &amp; plasma modelling</td>
-          <td class="sched-session sched-ap">Astrophysics &amp; plasma modelling</td>
-          <td class="sched-session sched-ap">Astrophysics &amp; plasma modelling</td>
-          <td class="sched-session sched-cd">Converging &amp; interdisciplinary fields</td>
-          <td class="sched-excursion" rowspan="7" style="opacity:0.85;">Optional Full-day Excursion</td>
-        </tr>
-        <!-- 10h00–10h30 -->
-        <tr>
-          <td class="sched-time">10h00–10h30</td>
-          <td class="sched-empty"></td>
-          <td class="sched-break" colspan="5">Coffee Break</td>
-        </tr>
-        <!-- 10h30–12h30 -->
-        <tr>
-          <td class="sched-time">10h30–12h30</td>
-          <td class="sched-empty"></td>
-          <td class="sched-session sched-sw">Space weather &amp; climate</td>
-          <td class="sched-session sched-ap">Astrophysics &amp; plasma modelling</td>
-          <td class="sched-session sched-ap">Astrophysics &amp; plasma modelling</td>
-          <td class="sched-session sched-ap">Astrophysics &amp; plasma modelling</td>
-          <td class="sched-session sched-tp">Theoretical physics &amp; cosmology</td>
-        </tr>
-        <!-- 12h30–14h00 -->
-        <tr>
-          <td class="sched-time">12h30–14h00</td>
-          <td class="sched-empty"></td>
-          <td class="sched-meal" colspan="5">Lunch</td>
-        </tr>
-        <!-- 14h00–15h30 -->
-        <tr>
-          <td class="sched-time">14h00–15h30</td>
-          <td class="sched-empty"></td>
-          <td class="sched-session sched-me">Materials in extreme environments</td>
-          <td class="sched-session sched-ap">Astrophysics &amp; plasma modelling</td>
-          <td class="sched-excursion" rowspan="3">Excursion</td>
-          <td class="sched-session sched-cp">Computational physics &amp; AI</td>
-          <td class="sched-session sched-tp">Theoretical physics &amp; cosmology</td>
-        </tr>
-        <!-- 15h30–16h00 -->
-        <tr>
-          <td class="sched-time">15h30–16h00</td>
-          <td class="sched-empty"></td>
-          <td class="sched-break" colspan="2">Coffee Break</td>
-          <td class="sched-break" colspan="2">Coffee Break</td>
-        </tr>
-        <!-- 16h00–17h30 -->
-        <tr>
-          <td class="sched-time">16h00–17h30</td>
-          <td class="sched-empty"></td>
-          <td class="sched-session sched-me">Materials in extreme environments</td>
-          <td class="sched-session sched-ap">Astrophysics &amp; plasma modelling</td>
-          <td class="sched-session sched-cp">Computational physics &amp; AI</td>
-          <td class="sched-session sched-close">Wrap-up discussion &amp; Closing Ceremony</td>
-        </tr>
-        <!-- 17h00–20h00 -->
-        <tr>
-          <td class="sched-time">17h00–20h00</td>
-          <td class="sched-meal sched-arrival">Arrival &amp; Dinner</td>
-          <td class="sched-meal">Dinner</td>
-          <td class="sched-gala">★ Conference Dinner</td>
-          <td class="sched-meal">Dinner</td>
-          <td class="sched-gala" style="background:linear-gradient(135deg,#0a3d2e 0%,#0e5c42 100%);color:#a8f0d0;">🎙 Public Outreach Talk &amp; Dinner</td>
-          <td class="sched-meal">Dinner</td>
-          <td class="sched-empty"></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- Legend -->
-  <div class="sched-legend">
-    <span class="sleg sleg-sw">Space weather &amp; climate</span>
-    <span class="sleg sleg-ap">Astrophysics &amp; plasma modelling</span>
-    <span class="sleg sleg-me">Materials in extreme environments</span>
-    <span class="sleg sleg-cp">Computational physics &amp; AI</span>
-    <span class="sleg sleg-tp">Theoretical physics &amp; cosmology</span>
-    <span class="sleg sleg-cd">Converging &amp; interdisciplinary fields</span>
   </div>
 </section>
 

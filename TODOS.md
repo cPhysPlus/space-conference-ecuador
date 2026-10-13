@@ -28,6 +28,8 @@
 
   Yeinzon Rodriguez Garcia.
 
+  Francesco Pucci.
+
 - [x] **Update venue and dates**
 
   Hotel Ajaví, Ibarra. Registration opens October 2026.
