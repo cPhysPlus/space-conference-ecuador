@@ -30,6 +30,8 @@
 
   Francesco Pucci.
 
+  Patrick Antolin.
+
 - [x] **Update venue and dates**
 
   Hotel Ajaví, Ibarra. Registration opens October 2026.
