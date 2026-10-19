@@ -108,7 +108,7 @@
     padding: 0.3rem 0.8rem; border-radius: 100px; white-space: nowrap;
   }
   .nav-links a.nav-cta:hover { color: #fff; background: var(--accent2); }
-  @media (max-width: 999px) { .nav-links { display: none; } }
+  @media (max-width: 1039px) { .nav-links { display: none; } }
 
   /* ── HERO ── */
   .hero {
@@ -674,6 +674,28 @@
   .policy-box h3 { color: var(--gold); font-size: 0.9rem; margin-bottom: 0.6rem; }
   .policy-box p { font-size: 0.875rem; color: #7A5500; }
 
+  /* ── FAQ ── */
+  .faq { margin-top: 2.5rem; scroll-margin-top: 90px; }
+  .faq h3 { font-size: 1.15rem; color: var(--ink); margin-bottom: 1rem; }
+  .faq details {
+    background: var(--surface); border: 1px solid var(--accent); border-radius: 8px;
+    margin-bottom: 0.6rem; overflow: hidden;
+  }
+  .faq summary {
+    cursor: pointer; list-style: none; padding: 0.95rem 1.25rem; padding-right: 3rem;
+    font-weight: 600; color: #fff; background: var(--accent); position: relative;
+    transition: background 0.15s;
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after {
+    content: '+'; position: absolute; right: 1.25rem; top: 50%; transform: translateY(-50%);
+    font-family: var(--mono); font-size: 1.1rem; color: #fff;
+  }
+  .faq details[open] summary::after { content: '−'; }
+  .faq summary:hover { background: var(--accent2); }
+  .faq details p { font-size: 0.9rem; color: var(--muted); margin: 0; padding: 1rem 1.25rem 1.1rem; }
+  .faq details a { color: var(--accent2); text-decoration: underline; text-underline-offset: 2px; }
+
   /* ── COC ── */
   .coc-grid {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -1033,6 +1055,7 @@
     <li><a href="#programme">Programme</a></li>
     <li><a class="nav-cta" href="#contributions">Submit your work</a></li>
     <li><a class="nav-cta" href="#registration">Registration</a></li>
+    <li><a href="#faq">FAQ</a></li>
     <li><a href="#practical">Practical info</a></li>
     <li><a href="#conduct">Conduct</a></li>
     <li><a href="#sponsors-join">Sponsors</a></li>
@@ -1657,6 +1680,38 @@
   <div class="policy-box">
     <h3>⚠ Cancellation &amp; refund policy</h3>
     <p>Registration fees are partially refundable until <strong>15 December 2026</strong>. A non-refundable administrative fee of <strong>30%</strong> of the registration fee will be retained to cover processing costs; the remaining 70% will be reimbursed. No refunds will be issued after 15 December 2026, regardless of reason. Registrations may be transferred to another eligible participant at no extra cost. Contact the organising committee by email before the deadline to request a cancellation or transfer.</p>
+  </div>
+
+  <div class="faq" id="faq">
+    <h3>Frequently asked questions</h3>
+    <details>
+      <summary>I am interested in participating and presenting my work. What should I do?</summary>
+      <p>First, submit your abstract on <a href="https://www.morressier.com/call-for-abstracts/ESPACE-2027" target="_blank" rel="noopener">Morressier</a> before <strong>23 November 2026</strong>. Then register by paying your fee through the <a href="https://pagos.cedia.edu.ec/transaction?code=c3J2PTZhYzZiNDQ0ZGQyMjMxNDg5M2UxNTNiNA%3D%3D" target="_blank" rel="noopener">CEDIA payment link</a>. Pay before 30 November 2026 to get the early-bird price.</p>
+    </details>
+    <details>
+      <summary>I just want to attend, without presenting anything. What should I do?</summary>
+      <p>No abstract is needed. Register directly through the <a href="https://pagos.cedia.edu.ec/transaction?code=c3J2PTZhYzZiNDQ0ZGQyMjMxNDg5M2UxNTNiNA%3D%3D" target="_blank" rel="noopener">CEDIA payment link</a>, choosing the full conference or a single day. <strong>Spaces are limited</strong>, so we recommend registering early.</p>
+    </details>
+    <details>
+      <summary>What does the registration fee include?</summary>
+      <p>Coffee breaks, lunches at the venue, use of the conference venue, conference materials and a certificate of attendance.</p>
+    </details>
+    <details>
+      <summary>Will I receive a certificate of attendance?</summary>
+      <p>Yes. A certificate of attendance is included in every registration category.</p>
+    </details>
+    <details>
+      <summary>Can I attend or present online?</summary>
+      <p>No. eSPACE 2027 is an <strong>on-site event only</strong>: all talks and posters are presented in person at Hotel Ajaví, Ibarra.</p>
+    </details>
+    <details>
+      <summary>Can I get an official invitation letter?</summary>
+      <p>Yes. You may need one to apply for a visa (check whether your country requires one in <a href="#practical">Practical information</a>) or to request funding or leave from your institution. Email us at <a href="mailto:e.space2027@yachaytech.edu.ec">e.space2027@yachaytech.edu.ec</a> with your full name and affiliation, and the organising committee will send you the letter.</p>
+    </details>
+    <details>
+      <summary>How do I get to Ibarra, Ecuador?</summary>
+      <p>Fly into Mariscal Sucre International Airport (UIO) in Quito. From there, Ibarra is about 2 to 3 hours by road: take a bus from Terminal Carcelén in north Quito, or book a private transfer straight to Hotel Ajaví. See <a href="#practical">Practical information</a> for routes, fares and travel tips.</p>
+    </details>
   </div>
 </section>
 

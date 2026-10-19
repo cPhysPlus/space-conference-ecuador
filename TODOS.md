@@ -60,9 +60,9 @@
 
   Added EPN.
 
-- [ ] **Create a FAQ section**
+- [x] **Create a FAQ section**
 
-  Frequent questions about the conference to reduce the number of emails.
+  Registration questions, at the end of the registration section.
 
 - [x] **Add member to Support Team**
 
