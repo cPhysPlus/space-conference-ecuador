@@ -1,3 +1,3 @@
 # eSPACE Conference 2027
 
-## Website by W. E. Banda-Barragán
+## Website by Computational Physics Group at Yachay Tech University
